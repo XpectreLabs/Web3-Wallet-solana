@@ -11,6 +11,7 @@ import {
     createTransferInstruction,
 } from '@solana/spl-token';
 import { verify } from '@noble/ed25519';
+import { handleError, WalletError } from '../errorHandler';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -33,8 +34,12 @@ export interface TransferParams {
  * Reusable service to perform SOL or SPL token transfers
  * compatible with the web interface (using Wallet Adapter).
  *
+ * On failure, throws a structured WalletError (never a raw JS Error) so that
+ * every caller receives a consistent, user-friendly error shape.
+ *
  * @param params Transfer parameters
  * @returns The signature of the confirmed transaction
+ * @throws {WalletError} when validation or network steps fail
  */
 export async function executeTransfer({
     connection,
@@ -50,11 +55,17 @@ export async function executeTransfer({
     try {
         recipient = new PublicKey(recipientAddress);
     } catch (err) {
-        throw new Error('Recipient address is not a valid Solana public key.');
+        // handleError classifies this as INVALID_ADDRESS and logs to console.
+        // We re-throw the returned WalletError so the caller can display it.
+        throw handleError(err, 'executeTransfer — recipient address');
     }
 
     if (amount <= 0) {
-        throw new Error('Amount to send must be greater than zero.');
+        // Build a WalletError manually for a known validation rule, then throw it.
+        throw handleError(
+            new Error('Amount to send must be greater than zero.'),
+            'executeTransfer — amount validation'
+        );
     }
 
     const instructions = [];
@@ -73,14 +84,17 @@ export async function executeTransfer({
     } else {
         // Send SPL Token
         if (!mintAddress) {
-            throw new Error('Mint address is required to send SPL tokens.');
+            throw handleError(
+                new Error('Mint address is required to send SPL tokens.'),
+                'executeTransfer — mint address missing'
+            );
         }
 
         let mint: PublicKey;
         try {
             mint = new PublicKey(mintAddress);
         } catch (err) {
-            throw new Error('Mint address is not a valid Solana public key.');
+            throw handleError(err, 'executeTransfer — mint address');
         }
 
         // Derive Associated Token Account (ATA) addresses for both sides
@@ -126,13 +140,21 @@ export async function executeTransfer({
 
     const transaction = new VersionedTransaction(messageV0);
 
-    // 4. Request signature from Wallet Adapter (triggers browser wallet popup)
-    const signature = await sendTransaction(transaction, connection);
+    // 4. Send and confirm — wrapped in try/catch to capture network and wallet errors.
+    //    This covers: user rejection, insufficient funds, blockhash expiry, RPC issues.
+    try {
+        // Request signature from Wallet Adapter (triggers browser wallet popup)
+        const signature = await sendTransaction(transaction, connection);
 
-    // 5. Wait for on-chain confirmation
-    await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight }, 'confirmed');
+        // Wait for on-chain confirmation
+        await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight }, 'confirmed');
 
-    return signature;
+        return signature;
+    } catch (err) {
+        // classifySolanaError inside handleError will map known patterns
+        // (e.g. "User rejected", "0x1 insufficient funds") to readable messages.
+        throw handleError(err, 'executeTransfer — send & confirm');
+    }
 }
 
 /**
@@ -151,3 +173,4 @@ export async function verifyMessageSignature(
 ): Promise<boolean> {
     return verify(signature, message, publicKey.toBytes());
 }
+
