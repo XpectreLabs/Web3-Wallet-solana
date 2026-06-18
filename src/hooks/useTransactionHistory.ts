@@ -159,9 +159,14 @@ export function useTransactionHistory(
 
               // Iterate through instructions
               for (const instruction of message.instructions) {
+<<<<<<< Updated upstream
                 // Check if the instruction is a ParsedInstruction (since it can also be PartiallyDecodedInstruction)
                 if ('program' in instruction && 'parsed' in instruction) {
                   // Check if this is a System program SOL transfer
+=======
+                // Fix: Type Guard to check if it's a ParsedInstruction before accessing program/parsed
+                if ('program' in instruction) {
+>>>>>>> Stashed changes
                   if (instruction.program === 'system' && instruction.parsed?.type === 'transfer') {
                     const parsed = instruction.parsed;
                     const source = parsed.info?.source;
@@ -233,7 +238,7 @@ export function useTransactionHistory(
         setLoading(false);
       }
     },
-    [publicKey, connection]
+    [publicKey, connection, lastSignature]
   );
 
   // ───────────────────────────────────────────────────────────────────────

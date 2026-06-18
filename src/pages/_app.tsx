@@ -4,6 +4,7 @@
 // - Full dark background (#121921) with decorative gold radial glow
 // - ContextProvider wraps all Solana wallet adapters + network config
 // - Notifications (toast) system from scaffold
+// - Optimized DM Sans font rendering (Next.js native)
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { AppProps } from 'next/app';
@@ -13,8 +14,18 @@ import { WifiOff, RefreshCw } from 'lucide-react';
 import { ContextProvider } from '../contexts/ContextProvider';
 import Notifications from '../components/Notification';
 
+// 1. Importación directa del optimizador de fuentes de Next.js
+import { DM_Sans } from '@next/font/google';
+
 require('@solana/wallet-adapter-react-ui/styles.css');
 require('../styles/globals.css');
+
+// 2. Configuración de la fuente
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+});
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [isConnectionLost, setIsConnectionLost] = useState(false);
@@ -98,8 +109,16 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       <ContextProvider>
+<<<<<<< Updated upstream
         {/* Root shell */}
         <div className="min-h-screen flex flex-col font-sans" style={{ backgroundColor: '#121921', color: '#f0f4f8' }}>
+=======
+        {/* Root shell: Aquí agregamos dmSans.className para aplicar la tipografía a toda la app */}
+        <div
+          className={`min-h-screen flex flex-col font-sans ${dmSans.className}`}
+          style={{ backgroundColor: '#121921', color: '#f0f4f8' }}
+        >
+>>>>>>> Stashed changes
 
           {/* Decorative gold radial glow */}
           <div
