@@ -77,7 +77,10 @@ const TopHeader: FC<TopHeaderProps> = ({
       {/* Fluid Search Bar */}
       <div className="flex-1 max-w-2xl bg-white/[0.03] rounded-2xl px-4 py-2.5 flex items-center gap-2.5 border border-[#dea001]/10 transition-colors focus-within:border-[#dea001]/30">
         <Search size={16} className="text-[#7a8fa6]" />
+        {/* sr-only label: visually hidden but announced by screen readers */}
+        <label htmlFor="global-search" className="sr-only">Search assets and history</label>
         <input
+          id="global-search"
           placeholder="Search assets, history..."
           className="bg-transparent border-none outline-none text-white w-full text-[14px] placeholder:text-[#7a8fa6]"
         />
@@ -150,6 +153,8 @@ const TopHeader: FC<TopHeaderProps> = ({
               setSettingsOpen(!settingsOpen);
               setWalletOpen(false);
             }}
+            aria-label={settingsOpen ? 'Close settings menu' : 'Open settings menu'}
+            aria-expanded={settingsOpen}
             className="w-10 h-10 rounded-full flex items-center justify-center border transition-all cursor-pointer"
             style={{
               backgroundColor: settingsOpen ? 'rgba(222, 160, 1, 0.1)' : C.surface,
