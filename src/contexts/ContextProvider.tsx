@@ -38,8 +38,6 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         return clusterApiUrl(network);
     }, [network, networkConfiguration]);
 
-    console.log(network);
-
     const wallets = useMemo(
         () => [
             new UnsafeBurnerWalletAdapter(),

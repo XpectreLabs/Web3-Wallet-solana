@@ -95,6 +95,17 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <title>Xpectre Wallet</title>
         <meta name="description" content="Xpectre Labs — Solana Web3 Wallet Dashboard" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* theme-color: tints the browser toolbar on mobile (Lighthouse PWA/Best Practices) */}
+        <meta name="theme-color" content="#121921" />
+        {/* Open Graph — controls how the app appears when shared on social media */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpectre Wallet" />
+        <meta property="og:description" content="Xpectre Labs — Solana Web3 Wallet Dashboard" />
+        <meta property="og:site_name" content="Xpectre" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Xpectre Wallet" />
+        <meta name="twitter:description" content="Xpectre Labs — Solana Web3 Wallet Dashboard" />
       </Head>
 
       <ContextProvider>

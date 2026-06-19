@@ -18,7 +18,6 @@ const useUserSOLBalanceStore = create<UserSOLBalanceStore>((set) => ({
         if (balance === null) return;
 
         set({ balance });
-        console.log('Balance updated:', balance, 'SOL');
     },
 }));
 
