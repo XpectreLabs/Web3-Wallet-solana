@@ -7,7 +7,7 @@ const ConnectWallet: FC = () => {
       {/* Logo */}
       <div className="mb-6 flex items-center justify-center">
         <img
-          src="/long.png"
+          src="/Xpectre-logo.svg"
           alt="Xpectre Logo"
           className="h-20 w-auto object-contain select-none"
         />

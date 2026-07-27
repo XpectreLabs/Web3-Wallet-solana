@@ -32,7 +32,7 @@ const Sidebar: FC<SidebarProps> = ({ active, onChange }) => {
         className={`p-6 flex items-center mb-4 shrink-0 overflow-hidden cursor-pointer border-none bg-transparent hover:opacity-80 transition-opacity text-left w-full focus:outline-none ${isCollapsed ? 'justify-center px-0' : 'gap-3'}`}
       >
         <img
-          src="/long.png"
+          src="/Xpectre-logo.svg"
           alt="Xpectre Logo"
           className="h-8 w-auto object-contain select-none shrink-0"
         />
@@ -51,8 +51,8 @@ const Sidebar: FC<SidebarProps> = ({ active, onChange }) => {
             onClick={() => onChange(t.key)}
             title={isCollapsed ? t.label : undefined}
             className={`flex items-center rounded-xl transition-all cursor-pointer border-none text-left overflow-hidden focus:outline-none ${active === t.key
-                ? 'bg-[#dea001]/10 text-[#dea001]'
-                : 'bg-transparent text-[#7a8fa6] hover:bg-white/5 hover:text-white'
+              ? 'bg-[#dea001]/10 text-[#dea001]'
+              : 'bg-transparent text-[#7a8fa6] hover:bg-white/5 hover:text-white'
               } ${isCollapsed ? 'justify-center p-3' : 'gap-4 px-4 py-3.5'}`}
           >
             <div className="shrink-0">{t.icon}</div>
