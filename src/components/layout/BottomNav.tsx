@@ -11,16 +11,18 @@ interface BottomNavProps {
 
 const BottomNav: FC<BottomNavProps> = ({ active, onChange }) => {
   const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
-    { key: 'home',     label: 'Home',     icon: <Home size={24} /> },
-    { key: 'history',  label: 'History',  icon: <History size={24} /> },
+    { key: 'home', label: 'Home', icon: <Home size={24} /> },
+    { key: 'history', label: 'History', icon: <History size={24} /> },
     { key: 'settings', label: 'Settings', icon: <Settings size={24} /> },
   ];
 
   return (
     <nav
-      className="md:hidden sticky bottom-0 z-30 flex border-t"
+      className="md:hidden fixed bottom-0 left-0 w-full z-50 flex border-t"
       style={{
-        backgroundColor: C.bg,
+        backgroundColor: 'rgba(16, 19, 28, 0.95)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         borderColor: C.border,
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}
