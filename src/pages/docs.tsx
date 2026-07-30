@@ -11,9 +11,8 @@ export const SwaggerDocsView: FC = () => {
           deepLinking: true,
           presets: [
             (window as any).SwaggerUIBundle.presets.apis,
-            (window as any).SwaggerUIBundle.SwaggerUIStandalonePreset,
           ],
-          layout: 'StandaloneLayout',
+          layout: 'BaseLayout',
         });
       }
     };
@@ -25,17 +24,8 @@ export const SwaggerDocsView: FC = () => {
         const bundleScript = document.createElement('script');
         bundleScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-bundle.min.js';
         bundleScript.async = true;
-
-        const presetScript = document.createElement('script');
-        presetScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-standalone-preset.min.js';
-        presetScript.async = true;
-
-        presetScript.onload = () => {
-          bundleScript.onload = initSwagger;
-          document.body.appendChild(bundleScript);
-        };
-
-        document.body.appendChild(presetScript);
+        bundleScript.onload = initSwagger;
+        document.body.appendChild(bundleScript);
       }
     }
   }, []);
