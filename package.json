@@ -8,7 +8,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:api": "playwright test"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
@@ -40,6 +41,7 @@
     "zustand": "^3.6.9"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "autoprefixer": "^10.4.2",
