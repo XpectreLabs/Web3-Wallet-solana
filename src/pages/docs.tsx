@@ -1,7 +1,45 @@
 import Head from 'next/head';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 export const SwaggerDocsView: FC = () => {
+  useEffect(() => {
+    const initSwagger = () => {
+      if (typeof window !== 'undefined' && (window as any).SwaggerUIBundle) {
+        (window as any).SwaggerUIBundle({
+          url: '/swagger.json',
+          dom_id: '#swagger-ui',
+          deepLinking: true,
+          presets: [
+            (window as any).SwaggerUIBundle.presets.apis,
+            (window as any).SwaggerUIBundle.SwaggerUIStandalonePreset,
+          ],
+          layout: 'StandaloneLayout',
+        });
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      if ((window as any).SwaggerUIBundle) {
+        initSwagger();
+      } else {
+        const bundleScript = document.createElement('script');
+        bundleScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-bundle.min.js';
+        bundleScript.async = true;
+
+        const presetScript = document.createElement('script');
+        presetScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-standalone-preset.min.js';
+        presetScript.async = true;
+
+        presetScript.onload = () => {
+          bundleScript.onload = initSwagger;
+          document.body.appendChild(bundleScript);
+        };
+
+        document.body.appendChild(presetScript);
+      }
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -24,25 +62,8 @@ export const SwaggerDocsView: FC = () => {
         </header>
 
         <main className="p-4 sm:p-8">
-          <div id="swagger-ui" className="bg-white rounded-2xl p-4 shadow-2xl overflow-hidden" />
+          <div id="swagger-ui" className="bg-white rounded-2xl p-4 shadow-2xl overflow-hidden text-black" />
         </main>
-
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-bundle.min.js"
-          onLoad={() => {
-            if (typeof window !== 'undefined' && (window as any).SwaggerUIBundle) {
-              (window as any).SwaggerUIBundle({
-                url: '/swagger.json',
-                dom_id: '#swagger-ui',
-                deepLinking: true,
-                presets: [
-                  (window as any).SwaggerUIBundle.presets.apis,
-                  (window as any).SwaggerUIBundle.SwaggerUIStandalonePreset,
-                ],
-              });
-            }
-          }}
-        />
       </div>
     </>
   );
