@@ -44,3 +44,7 @@ yarn-error.log*
 *.json.bak
 
 *.env.local
+
+# playwright
+/playwright-report/
+/test-results/
