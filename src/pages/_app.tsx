@@ -24,7 +24,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     if (
       typeof window !== 'undefined' &&
       window.location.protocol === 'http:' &&
-      !['localhost', '127.0.0.1'].includes(window.location.hostname)
+      !['localhost', '127.0.0.1'].includes(window.location.hostname) &&
+      !window.location.hostname.startsWith('192.168.') // <--- Nueva excepción para IPs locales
     ) {
       window.location.href = window.location.href.replace('http:', 'https:');
     }
@@ -105,10 +106,13 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       <ContextProvider>
-        {/* Root shell */}
-        <div className="relative min-h-screen flex flex-col font-sans" style={{ backgroundColor: '#121921', color: '#f0f4f8' }}>
 
-{/* Decorative gold radial glow (Animated) */}
+        {/* Root shell */}
+        {/* Root shell */}
+        <div className="relative min-h-[100dvh] flex flex-col font-sans" style={{ backgroundColor: '#121921', color: '#f0f4f8' }}>
+
+
+          {/* Decorative gold radial glow (Animated) */}
           <div
             aria-hidden="true"
             className="fixed inset-0 z-0 pointer-events-none animate-in fade-in duration-[1500ms] ease-in-out"

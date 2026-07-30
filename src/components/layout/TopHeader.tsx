@@ -6,6 +6,7 @@ import {
   RefreshCcw,
   LogOut,
   Settings,
+  X,
 } from 'lucide-react';
 import Toggle from '../ui/Toggle';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
@@ -24,7 +25,6 @@ interface TopHeaderProps {
   setAutoConnect: (v: boolean) => void;
   onDisconnect: () => void;
   onGlobalSearch?: (query: string) => void;
-  onRequestAirdrop?: () => void; // <--- Propiedad añadida para el Airdrop
 }
 
 function truncate(addr: string) {
@@ -39,13 +39,15 @@ const TopHeader: FC<TopHeaderProps> = ({
   setAutoConnect,
   onDisconnect,
   onGlobalSearch,
-  onRequestAirdrop, // <--- La recibimos aquí
 }) => {
   const { setVisible } = useWalletModal();
   const { wallet } = useWallet();
   const isLocalWallet = wallet?.adapter.name === 'XpectreWallet';
+
   const [walletOpen, setWalletOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const ref = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -54,6 +56,7 @@ const TopHeader: FC<TopHeaderProps> = ({
     if (val && onGlobalSearch) {
       onGlobalSearch(val);
       if (searchInputRef.current) searchInputRef.current.value = '';
+      setIsSearchOpen(false);
     }
   };
   const { copy } = useCopyToClipboard();
@@ -85,8 +88,8 @@ const TopHeader: FC<TopHeaderProps> = ({
         WebkitBackdropFilter: 'blur(12px)',
       }}
     >
-      {/* Mobile Logo — hidden on desktop (sidebar has it) */}
-      <div className="md:hidden flex items-center shrink-0">
+      {/* Mobile Logo — hidden on desktop OR when search is open on mobile */}
+      <div className={`md:hidden shrink-0 items-center ${isSearchOpen ? 'hidden' : 'flex'}`}>
         <img
           src="/Xpectre-logo.svg"
           alt="Xpectre Logo"
@@ -94,15 +97,38 @@ const TopHeader: FC<TopHeaderProps> = ({
         />
       </div>
 
-      <div className="flex-1 max-w-2xl bg-white/[0.03] rounded-2xl px-4 py-2.5 flex items-center gap-2.5 border border-[#dea001]/10 transition-colors focus-within:border-[#dea001]/30">
-        <button onClick={triggerSearch} className="bg-transparent border-0 p-0 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity" aria-label="Search">
+      {/* Botón de lupa (solo visible en móvil y cuando el buscador está cerrado) */}
+      <button
+        onClick={() => setIsSearchOpen(true)}
+        className={`md:hidden p-2 rounded-md hover:bg-white/5 text-[#7a8fa6] transition-colors ${isSearchOpen ? 'hidden' : 'block ml-auto'
+          }`}
+        aria-label="Open search"
+      >
+        <Search size={20} />
+      </button>
+
+      {/* Search Input Container */}
+      <div
+        className={`
+          ${isSearchOpen ? 'flex w-full' : 'hidden'} md:flex
+          flex-1 max-w-2xl bg-white/[0.03] rounded-2xl px-4 py-2.5 items-center gap-2.5 border border-[#dea001]/10 transition-colors focus-within:border-[#dea001]/30
+        `}
+      >
+        <button
+          onClick={triggerSearch}
+          className="bg-transparent border-0 p-0 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
+          aria-label="Search"
+        >
           <Search size={16} className="text-[#7a8fa6]" />
         </button>
-        <label htmlFor="global-search" className="sr-only">Search assets, history</label>
+        <label htmlFor="global-search" className="sr-only">
+          Search assets, history
+        </label>
         <input
           ref={searchInputRef}
           id="global-search"
           placeholder="Search by wallet address..."
+          autoFocus={isSearchOpen}
           className="bg-transparent border-none outline-none text-white w-full text-[14px] placeholder:text-[#7a8fa6]"
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
@@ -110,10 +136,23 @@ const TopHeader: FC<TopHeaderProps> = ({
             }
           }}
         />
+        {/* Botón de cerrar (solo visible en móvil cuando está abierto) */}
+        {isSearchOpen && (
+          <button
+            onClick={() => setIsSearchOpen(false)}
+            className="md:hidden flex items-center justify-center p-1 text-[#7a8fa6] hover:text-white transition-colors"
+            aria-label="Close search"
+          >
+            <X size={18} />
+          </button>
+        )}
       </div>
 
-      {/* Right Actions */}
-      <div className="flex items-center gap-3" ref={ref}>
+      {/* Right Actions — Hidden on mobile if search is open */}
+      <div
+        className={`items-center gap-3 ${isSearchOpen ? 'hidden md:flex' : 'flex'}`}
+        ref={ref}
+      >
         {/* Wallet Pill Dropdown */}
         <div className="relative">
           <button
@@ -149,7 +188,6 @@ const TopHeader: FC<TopHeaderProps> = ({
                 <Copy size={16} className="text-[#7a8fa6]" /> Copy address
               </button>
 
-              {/* Change wallet — opens the wallet adapter modal */}
               <button
                 onClick={() => {
                   setVisible(true);
@@ -206,7 +244,9 @@ const TopHeader: FC<TopHeaderProps> = ({
               {!isLocalWallet && (
                 <>
                   <div className="flex items-center justify-between">
-                    <span className="text-white text-[13px] font-semibold">Autoconnect</span>
+                    <span className="text-white text-[13px] font-semibold">
+                      Autoconnect
+                    </span>
                     <Toggle
                       checked={autoConnect}
                       onChange={() => setAutoConnect(!autoConnect)}
@@ -239,28 +279,6 @@ const TopHeader: FC<TopHeaderProps> = ({
                   ))}
                 </div>
               </div>
-
-              {/* Developer Tools (Airdrop) - ¡Solo aparece en Devnet! */}
-              {networkUI === 'Devnet' && (
-                <>
-                  <div className="h-[1px] mt-2 mb-1" style={{ backgroundColor: C.border }} />
-                  <div>
-                    <span className="text-[#dea001] text-[12px] font-semibold block mb-2 uppercase tracking-wide">
-                      Developer Tools
-                    </span>
-                    <button
-                      onClick={() => {
-                        if (onRequestAirdrop) onRequestAirdrop();
-                        setSettingsOpen(false); // Cierra el menú automáticamente
-                      }}
-                      className="w-full py-2.5 rounded-lg font-bold text-[13px] border-none cursor-pointer transition-all bg-[#dea001] text-black hover:bg-[#dea001]/90 shadow-[0_0_10px_rgba(222,160,1,0.2)]"
-                    >
-                      Request 1 SOL (Airdrop)
-                    </button>
-                  </div>
-                </>
-              )}
-
             </div>
           )}
         </div>
