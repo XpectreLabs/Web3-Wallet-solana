@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Xpectre Solana DApp Backend REST API",
+    "description": "API REST oficial de la DApp Xpectre Solana para consultar salud del sistema, estado del RPC y precio de mercado en tiempo real.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Xpectre Labs",
+      "url": "https://github.com/XpectreLabs"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor de desarrollo local"
+    }
+  ],
+  "tags": [
+    {
+      "name": "System",
+      "description": "Estado y salud de la aplicación"
+    },
+    {
+      "name": "Market",
+      "description": "Información de precios y mercado de Solana"
+    }
+  ],
+  "paths": {
+    "/api/hello": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Ruta de prueba por defecto",
+        "description": "Retorna un mensaje simple de verificación de la API.",
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Verificar la salud del backend y RPC",
+        "description": "Retorna la salud general de la aplicación, tiempo activo (uptime) y timestamp del servidor.",
+        "responses": {
+          "200": {
+            "description": "Servicio funcionando correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "example": "2026-07-22T10:42:00.000Z"
+                    },
+                    "environment": {
+                      "type": "string",
+                      "example": "development"
+                    },
+                    "solanaRpc": {
+                      "type": "string",
+                      "example": "https://api.mainnet-beta.solana.com"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price": {
+      "get": {
+        "tags": ["Market"],
+        "summary": "Obtener el precio actual de SOL/USD",
+        "description": "Retorna la cotización en vivo de Solana (SOL) en USD junto con el cambio de las últimas 24 horas.",
+        "responses": {
+          "200": {
+            "description": "Precio obtenido exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "string",
+                      "example": "SOL"
+                    },
+                    "priceUsd": {
+                      "type": "number",
+                      "example": 145.50
+                    },
+                    "change24h": {
+                      "type": "number",
+                      "example": 3.42
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2026-07-22T10:42:00.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Servicio de precios no disponible temporalmente"
+          }
+        }
+      }
+    }
+  }
+}
