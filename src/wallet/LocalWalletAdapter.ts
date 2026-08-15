@@ -12,15 +12,15 @@ export const LocalWalletName = 'XpectreWallet' as WalletName<'XpectreWallet'>;
 export class LocalWalletAdapter extends BaseMessageSignerWalletAdapter {
   name = LocalWalletName;
   url = 'https://localhost';
-  icon = '/logo.jpg';
-  
+  icon = '/Xpectre-logo.svg';
+
   readonly supportedTransactionVersions = new Set(['legacy', 0] as const);
   readyState = WalletReadyState.Installed;
 
   private _keypair: Keypair | null = null;
   private _publicKey: PublicKey | null = null;
   private _connecting: boolean = false;
-  
+
   private _unlockResolver: (() => void) | null = null;
   private _unlockRejecter: ((reason?: any) => void) | null = null;
 
@@ -63,12 +63,12 @@ export class LocalWalletAdapter extends BaseMessageSignerWalletAdapter {
   async connect(): Promise<void> {
     try {
       if (this.connected || this.connecting) return;
-      
+
       this._connecting = true;
-      
+
       if (!this._keypair) {
         window.dispatchEvent(new Event('request-local-wallet-unlock'));
-        
+
         await new Promise<void>((resolve, reject) => {
           this._unlockResolver = resolve;
           this._unlockRejecter = reject;

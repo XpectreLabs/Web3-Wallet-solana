@@ -86,9 +86,9 @@ const TopHeader: FC<TopHeaderProps> = ({
       {/* Mobile Logo — hidden on desktop (sidebar has it) */}
       <div className="md:hidden flex items-center shrink-0">
         <img
-          src="/long.PNG"
+          src="/Xpectre-logo.svg"
           alt="Xpectre Logo"
-          className="h-7 w-auto object-contain select-none"
+          className="h-12 w-auto object-contain select-none"
         />
       </div>
 
