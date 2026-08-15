@@ -1,15 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 
-// ── Design tokens (mirror of home/index.tsx) ──────────────────────────────────
-const C = {
-    bg:          '#10131c',
-    surfaceSolid:'#181c27',
-    gold:        '#dc9e00',
-    text:        '#ffffff',
-    muted:       '#7a8fa6',
-    border:      'rgba(222,160,1,0.10)',
-} as const;
+import { C } from '../../utils/theme';
 
 export interface BuyModalProps {
     isOpen: boolean;
@@ -34,7 +26,7 @@ export const BuyModal: FC<BuyModalProps> = ({ isOpen, onClose }) => {
     // Build the MoonPay URL
     // Note: In production, you would append your MoonPay API Key: &apiKey=pk_live_...
     const walletParam = publicKey ? `&walletAddress=${publicKey.toBase58()}` : '';
-    const moonpayUrl = `https://buy.moonpay.com?currencyCode=sol&colorCode=%23dc9e00${walletParam}`;
+    const moonpayUrl = `https://buy.moonpay.com?currencyCode=sol&colorCode=${encodeURIComponent(C.gold)}${walletParam}`;
 
     return (
         <div

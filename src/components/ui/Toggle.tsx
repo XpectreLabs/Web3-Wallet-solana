@@ -5,11 +5,7 @@ interface ToggleProps {
   onChange: () => void;
 }
 
-const C = {
-  gold: '#dea001',
-  border: 'rgba(222, 160, 1, 0.1)',
-  muted: '#7a8fa6',
-} as const;
+import { C } from '../../utils/theme';
 
 const Toggle: FC<ToggleProps> = ({ checked, onChange }) => {
   return (
@@ -32,7 +28,7 @@ const Toggle: FC<ToggleProps> = ({ checked, onChange }) => {
           left: checked ? 22 : 2,
           width: 18,
           height: 18,
-          backgroundColor: checked ? '#10131c' : C.muted,
+          backgroundColor: checked ? C.bg : C.muted,
         }}
       />
     </button>

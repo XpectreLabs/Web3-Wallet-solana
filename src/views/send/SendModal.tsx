@@ -9,17 +9,7 @@ import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import { sanitizeInput, isValidBase58Address, isPhishingAddress, isLargeTransaction } from '../../utils/security';
 import { logAuditEvent } from '../../utils/security/auditLogger';
 
-// ── Design tokens (mirror of home/index.tsx) ──────────────────────────────────
-const C = {
-    bg:          '#10131c',
-    surfaceSolid:'#181c27',
-    gold:        '#dc9e00',
-    text:        '#ffffff',
-    muted:       '#7a8fa6',
-    red:         '#ff4a4a',
-    border:      'rgba(222,160,1,0.10)',
-    inputBg:     'rgba(255,255,255,0.05)',
-} as const;
+import { C } from '../../utils/theme';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type TransferType = 'sol' | 'spl';

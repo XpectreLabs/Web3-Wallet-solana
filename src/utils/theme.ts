@@ -8,6 +8,7 @@ export const C = {
   green: '#4ade80',
   red: '#ff4a4a',
   border: 'rgba(222, 160, 1, 0.1)',
+  inputBg: 'rgba(255, 255, 255, 0.05)',
 } as const;
 
 export type NetworkUI = 'Mainnet' | 'Devnet' | 'Testnet';
