@@ -4,7 +4,7 @@ Xpectre Wallet is a decentralized application (dApp) built on Solana, designed t
 
 | Responsive | Desktop |
 | :---: | :---: |
-| ![](scaffold-mobile.png) | ![](scaffold-desktop.png) |
+| ![](./Xpectre-mobile.png) | ![](./Xpectre-desktop.png) |
 
 ---
 

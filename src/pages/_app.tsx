@@ -54,7 +54,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
   if (isConnectionLost) {
     return (
-      <div 
+      <div
         className="fixed inset-0 z-[9999] flex flex-col items-center justify-center p-6 text-center"
         style={{
           backgroundColor: '#10131c',
@@ -62,7 +62,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           fontFamily: 'sans-serif'
         }}
       >
-        <div 
+        <div
           className="p-8 rounded-[28px] border max-w-sm w-full animate-in fade-in zoom-in duration-300"
           style={{
             backgroundColor: 'rgba(24, 28, 39, 0.7)',
@@ -106,14 +106,14 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
       <ContextProvider>
         {/* Root shell */}
-        <div className="min-h-screen flex flex-col font-sans" style={{ backgroundColor: '#121921', color: '#f0f4f8' }}>
+        <div className="relative min-h-screen flex flex-col font-sans" style={{ backgroundColor: '#121921', color: '#f0f4f8' }}>
 
-          {/* Decorative gold radial glow */}
+{/* Decorative gold radial glow (Animated) */}
           <div
             aria-hidden="true"
-            className="fixed top-0 left-0 right-0 w-full h-[500px] pointer-events-none"
+            className="fixed inset-0 z-0 pointer-events-none animate-in fade-in duration-[1500ms] ease-in-out"
             style={{
-              background: 'radial-gradient(circle at top center, rgba(222, 160, 1, 0.1) 0%, transparent 70%)',
+              background: 'radial-gradient(circle at top center, rgba(222, 160, 1, 0.15) 0%, transparent 60%)',
             }}
           />
 
@@ -121,7 +121,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           <Notifications />
 
           {/* Active page */}
-          <div className="flex-1 w-full flex flex-col">
+          <div className="relative z-10 flex-1 w-full flex flex-col">
             <Component {...pageProps} />
           </div>
 

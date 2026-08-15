@@ -16,7 +16,7 @@ import { C } from '../../utils/theme';
 // Token brand colors for known SPL token symbols
 const TOKEN_COLORS: Record<string, string> = {
   SOL: '#9945FF',
-  USDC: '#2775CA',
+  USDC: '#2775CA', 
   RAY: '#5AC4BE',
   BONK: '#F7931A',
   JUP: '#19FB9B',
