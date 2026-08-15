@@ -20,8 +20,12 @@
     "@solana/wallet-adapter-wallets": "^0.19.16",
     "@solana/web3.js": "^1.73.0",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/crypto-js": "^4.2.2",
+    "bip39": "^3.1.0",
+    "crypto-js": "^4.2.0",
     "daisyui": "^1.24.3",
     "date-fns": "^2.29.3",
+    "ed25519-hd-key": "^2.0.0",
     "immer": "^9.0.12",
     "lucide-react": "^1.17.0",
     "next": "^13.1.5",
@@ -32,6 +36,7 @@
     "react-dom": "^18.2.0",
     "recharts": "^3.9.2",
     "sharp": "^0.34.5",
+    "tweetnacl": "^1.0.3",
     "zustand": "^3.6.9"
   },
   "devDependencies": {

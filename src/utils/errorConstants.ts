@@ -47,7 +47,7 @@ export const ERROR_RULES = [
         message: ERROR_MESSAGES.NETWORK_ERROR,
     },
     {
-        patterns: ['could_not_find_any_route', 'could not find any route', 'no route found', 'route'],
+        patterns: ['could_not_find_any_route', 'could not find any route', 'no route found', 'route', 'slippage_too_low'],
         code: ERROR_CODES.SLIPPAGE_TOO_LOW,
         message: ERROR_MESSAGES.SLIPPAGE_TOO_LOW,
     },
