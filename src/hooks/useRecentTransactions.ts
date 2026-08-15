@@ -14,6 +14,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Connection, PublicKey, ConfirmedSignatureInfo } from '@solana/web3.js';
 import { notify } from '../utils/notifications';
+import { handleError } from '../utils/errorHandler';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -171,12 +172,12 @@ export function useRecentTransactions(
 
         setTransactions(parsedTxs);
       } catch (err) {
-        const message = err instanceof Error ? err.message : 'Failed to fetch recent transactions';
-        setError(message);
+        const walletError = handleError(err, 'useRecentTransactions');
+        setError(walletError.message);
         notify({
           type: 'error',
           message: 'Failed to load recent transactions',
-          description: message,
+          description: walletError.message,
         });
       } finally {
         setLoading(false);

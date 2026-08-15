@@ -152,8 +152,9 @@ export const MarketSwapView: FC<MarketSwapViewProps> = ({ isOpen, onClose, solBa
       notify({ type: 'success', message: 'Swap successful!', txid: signature });
       setAmount('');
       setQuoteResponse(null);
-    } catch (err: any) {
-      notify({ type: 'error', message: err.message || 'Swap failed' });
+    } catch (err: unknown) {
+      const walletError = handleError(err, 'handleSwap');
+      notify({ type: 'error', message: walletError.message });
     } finally {
       setIsSwapping(false);
     }

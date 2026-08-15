@@ -3,6 +3,7 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
 import { notify } from '../../utils/notifications';
+import { handleError } from '../../utils/errorHandler';
 import { executeTransfer } from '../../utils/solana/signer';
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import { sanitizeInput, isValidBase58Address, isPhishingAddress, isLargeTransaction } from '../../utils/security';
@@ -261,22 +262,12 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
             });
 
             onClose(); // Close modal on success
-        } catch (err: any) {
-            // executeTransfer throws WalletError (plain object: { code, message, raw })
-            // for known Solana errors. For unexpected failures it may throw a raw Error.
-            // Both shapes have a `.message` property, so this handles both cases.
-            const userMessage: string =
-                err?.message ||
-                (err instanceof Error ? err.message : null) ||
-                'Transaction failed. Please try again.';
-
-            const errorCode: string | undefined =
-                err?.code ?? undefined;
-
+        } catch (err: unknown) {
+            const walletError = handleError(err, 'handleSend');
             notify({
                 type:        'error',
-                message:     userMessage,
-                description: errorCode,
+                message:     walletError.message,
+                description: walletError.code,
             });
         } finally {
             setLoading(false);

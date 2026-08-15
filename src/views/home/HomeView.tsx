@@ -22,6 +22,7 @@ import { HomeContent, SPLToken, tokenColor } from './HomeContent';
 import { MarketSwapView } from '../market/MarketSwapView';
 import { SendModal } from '../send/SendModal';
 import { ReceiveModal } from '../receive/ReceiveModal';
+import { BuyModal } from '../buy/BuyModal';
 import { SettingsView } from '../settings/SettingsView';
 
 /* ─────────────────────────────────────────────
@@ -72,6 +73,7 @@ export const HomeView: FC = () => {
   const [loadingTokens, setLoadingTokens] = useState(false);
   const [solPrice, setSolPrice] = useState<number | null>(null);
   const [solPriceChange, setSolPriceChange] = useState<number | null>(null);
+  const [buyModalOpen, setBuyModalOpen] = useState(false);
   const [sendModalOpen, setSendModalOpen] = useState(false);
   const [swapModalOpen, setSwapModalOpen] = useState(false);
   const [receiveModalOpen, setReceiveModalOpen] = useState(false);
@@ -228,6 +230,13 @@ export const HomeView: FC = () => {
             splTokens={splTokens}
             loadingTokens={loadingTokens}
             setActiveTab={setActiveTab}
+            onBuyClick={() => {
+              if (networkUI === 'Mainnet') {
+                setBuyModalOpen(true);
+              } else {
+                notify({ type: 'error', message: 'Buying SOL is only available on Mainnet.' });
+              }
+            }}
             onSendClick={() => setSendModalOpen(true)}
             onSwapClick={() => setSwapModalOpen(true)}
             onReceiveClick={() => setReceiveModalOpen(true)}
@@ -249,6 +258,7 @@ export const HomeView: FC = () => {
           />
         )}
       </DashboardLayout>
+      <BuyModal isOpen={buyModalOpen} onClose={() => setBuyModalOpen(false)} />
       <SendModal isOpen={sendModalOpen} onClose={() => setSendModalOpen(false)} />
       <MarketSwapView isOpen={swapModalOpen} onClose={() => setSwapModalOpen(false)} solBalance={balance} />
       <ReceiveModal isOpen={receiveModalOpen} onClose={() => setReceiveModalOpen(false)} />
