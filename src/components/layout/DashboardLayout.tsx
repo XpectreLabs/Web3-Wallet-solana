@@ -3,7 +3,7 @@ import Sidebar, { Tab } from './Sidebar';
 import BottomNav from './BottomNav';
 import TopHeader from './TopHeader';
 
-type NetworkUI = 'Mainnet' | 'Devnet' | 'Testnet';
+import { NetworkUI } from '../../utils/theme';
 
 interface DashboardLayoutProps {
   activeTab: Tab;

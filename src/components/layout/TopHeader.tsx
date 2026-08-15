@@ -12,9 +12,7 @@ import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 
-import { C } from '../../utils/theme';
-
-type NetworkUI = 'Mainnet' | 'Devnet' | 'Testnet';
+import { C, NetworkUI } from '../../utils/theme';
 
 interface TopHeaderProps {
   publicKeyStr: string;

@@ -26,16 +26,7 @@ import { ReceiveModal } from '../receive/ReceiveModal';
 import { BuyModal } from '../buy/BuyModal';
 import { SettingsView } from '../settings/SettingsView';
 
-/* ─────────────────────────────────────────────
-   Network UI mapping
-───────────────────────────────────────────── */
-type NetworkUI = 'Mainnet' | 'Devnet' | 'Testnet';
-
-const NET_MAP: Record<NetworkUI, string> = {
-  Mainnet: 'mainnet-beta',
-  Devnet: 'devnet',
-  Testnet: 'testnet',
-};
+import { NetworkUI, NET_MAP, NET_MAP_INVERSE } from '../../utils/theme';
 
 /* ═══════════════════════════════════════════════
    HomeView — Root Orchestrator
@@ -80,9 +71,7 @@ export const HomeView: FC = () => {
   const [receiveModalOpen, setReceiveModalOpen] = useState(false);
 
   // Map networkConfiguration hook value to UI label
-  const networkUI: NetworkUI =
-    networkConfiguration === 'mainnet-beta' ? 'Mainnet' :
-      networkConfiguration === 'testnet' ? 'Testnet' : 'Devnet';
+  const networkUI = NET_MAP_INVERSE[networkConfiguration] || 'Devnet';
 
   const setNetworkUI = useCallback(
     (n: NetworkUI) => {

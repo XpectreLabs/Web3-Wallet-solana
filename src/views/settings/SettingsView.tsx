@@ -5,10 +5,8 @@ import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 
-import { C } from '../../utils/theme';
+import { C, NetworkUI } from '../../utils/theme';
 import { getAuditEvents, clearAuditEvents, logAuditEvent, AuditEvent } from '../../utils/security/auditLogger';
-
-type NetworkUI = 'Mainnet' | 'Devnet' | 'Testnet';
 
 interface SettingsViewProps {
   publicKeyStr: string;
