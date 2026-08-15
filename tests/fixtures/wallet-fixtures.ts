@@ -6,7 +6,10 @@
 
 import { test as base } from '@playwright/test';
 import { buildMockWalletScript } from './mockWalletScript';
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+
+// Obligamos a Node a leer específicamente el archivo .env.test en la raíz
+dotenv.config({ path: '.env.test' });
 
 export const test = base.extend({
   page: async ({ page }, use) => {
