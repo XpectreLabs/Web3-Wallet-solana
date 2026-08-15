@@ -113,31 +113,31 @@ export const HomeContent: FC<HomeContentProps> = ({
         {/* SOL Balance */}
         <p className="text-white text-5xl font-extrabold tracking-tight">
           {balance.toFixed(4)}{' '}
-          <span className="text-[22px] font-medium text-[#7a8fa6]">SOL</span>
+          <span className="text-[22px] font-medium text-xp-muted">SOL</span>
         </p>
-        <p className="text-[#7a8fa6] text-lg mt-2 font-medium">${fiatValue} USD</p>
+        <p className="text-xp-muted text-lg mt-2 font-medium">${fiatValue} USD</p>
 
         {/* Quick Action Buttons */}
         <div className="grid grid-cols-4 sm:flex gap-3 sm:gap-4 mt-8 sm:max-w-xl">
           {[
             {
               label: 'Buy',
-              icon: <ShoppingCart size={20} className="text-[#dea001]" />,
+              icon: <ShoppingCart size={20} className="text-xp-gold" />,
               onClick: onBuyClick,
             },
             {
               label: 'Swap',
-              icon: <ArrowLeftRight size={20} className="text-[#dea001]" />,
+              icon: <ArrowLeftRight size={20} className="text-xp-gold" />,
               onClick: onSwapClick,
             },
             {
               label: 'Send',
-              icon: <ArrowUpRight size={20} className="text-[#dea001]" />,
+              icon: <ArrowUpRight size={20} className="text-xp-gold" />,
               onClick: onSendClick,
             },
             {
               label: 'Receive',
-              icon: <ArrowDownLeft size={20} className="text-[#dea001]" />,
+              icon: <ArrowDownLeft size={20} className="text-xp-gold" />,
               onClick: onReceiveClick,
             },
           ].map((a) => (
@@ -181,7 +181,7 @@ export const HomeContent: FC<HomeContentProps> = ({
             </div>
             <div className="flex-1">
               <p className="text-white text-[15px] font-semibold">Solana</p>
-              <p className="text-[#7a8fa6] text-[13px] mt-0.5">{balance.toFixed(4)} SOL</p>
+              <p className="text-xp-muted text-[13px] mt-0.5">{balance.toFixed(4)} SOL</p>
             </div>
             <div className="text-right">
               <p className="text-white text-[15px] font-semibold">${fiatValue}</p>
@@ -218,7 +218,7 @@ export const HomeContent: FC<HomeContentProps> = ({
                 </div>
                 <div className="flex-1">
                   <p className="text-white text-[15px] font-semibold">{token.symbol}</p>
-                  <p className="text-[#7a8fa6] text-[12px] mt-0.5 font-mono">
+                  <p className="text-xp-muted text-[12px] mt-0.5 font-mono">
                     {token.mint.slice(0, 8)}...
                   </p>
                 </div>
@@ -231,7 +231,7 @@ export const HomeContent: FC<HomeContentProps> = ({
           {/* Empty state */}
           {!loadingTokens && splTokens.length === 0 && (
             <div className="px-4 py-6 text-center">
-              <p className="text-[#7a8fa6] text-[14px]">No tokens found</p>
+              <p className="text-xp-muted text-[14px]">No tokens found</p>
             </div>
           )}
         </div>

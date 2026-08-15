@@ -128,7 +128,7 @@ export const RecentActivity: FC<RecentActivityProps> = ({ onViewMoreClick }) => 
         <h3 className="text-white text-[18px] font-bold">Recent Activity</h3>
         <button
           onClick={onViewMoreClick}
-          className="text-[#dea001] text-[13px] font-bold hover:text-[#e8ad1a] transition-colors cursor-pointer bg-transparent border-0 p-0"
+          className="text-xp-gold text-[13px] font-bold hover:text-xp-gold/90 transition-colors cursor-pointer bg-transparent border-0 p-0"
         >
           View More
         </button>
@@ -140,8 +140,8 @@ export const RecentActivity: FC<RecentActivityProps> = ({ onViewMoreClick }) => 
           className="rounded-2xl p-8 flex items-center justify-center gap-3"
           style={{ backgroundColor: C.surface, border: `1px solid ${C.border}` }}
         >
-          <Loader size={18} className="text-[#dea001] animate-spin" />
-          <p className="text-[#7a8fa6] text-[14px]">Loading activity...</p>
+          <Loader size={18} className="text-xp-gold animate-spin" />
+          <p className="text-xp-muted text-[14px]">Loading activity...</p>
         </div>
       )}
 
@@ -151,8 +151,8 @@ export const RecentActivity: FC<RecentActivityProps> = ({ onViewMoreClick }) => 
           className="rounded-2xl p-4 flex items-start gap-3"
           style={{ backgroundColor: C.surface, border: `1px solid ${C.red}40` }}
         >
-          <AlertCircle size={16} className="text-[#ff4a4a] mt-1 shrink-0" />
-          <p className="text-[#7a8fa6] text-[12px]">Could not load recent activity</p>
+          <AlertCircle size={16} className="text-xp-danger mt-1 shrink-0" />
+          <p className="text-xp-muted text-[12px]">Could not load recent activity</p>
         </div>
       )}
 
@@ -162,8 +162,8 @@ export const RecentActivity: FC<RecentActivityProps> = ({ onViewMoreClick }) => 
           className="rounded-2xl p-8 text-center"
           style={{ backgroundColor: C.surface, border: `1px solid ${C.border}` }}
         >
-          <p className="text-[#7a8fa6] text-[14px]">No recent activity</p>
-          <p className="text-[#7a8fa6] text-[12px] mt-1">
+          <p className="text-xp-muted text-[14px]">No recent activity</p>
+          <p className="text-xp-muted text-[12px] mt-1">
             Send or receive SOL to see transactions here
           </p>
         </div>

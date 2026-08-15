@@ -92,16 +92,16 @@ const TopHeader: FC<TopHeaderProps> = ({
         />
       </div>
 
-      <div className="flex-1 max-w-2xl bg-white/[0.03] rounded-2xl px-4 py-2.5 flex items-center gap-2.5 border border-[#dea001]/10 transition-colors focus-within:border-[#dea001]/30">
+      <div className="flex-1 max-w-2xl bg-white/[0.03] rounded-2xl px-4 py-2.5 flex items-center gap-2.5 border border-xp-gold/10 transition-colors focus-within:border-xp-gold/30">
         <button onClick={triggerSearch} className="bg-transparent border-0 p-0 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity" aria-label="Search">
-          <Search size={16} className="text-[#7a8fa6]" />
+          <Search size={16} className="text-xp-muted" />
         </button>
         <label htmlFor="global-search" className="sr-only">Search assets, history</label>
         <input
           ref={searchInputRef}
           id="global-search"
           placeholder="Search by wallet address..."
-          className="bg-transparent border-none outline-none text-white w-full text-[14px] placeholder:text-[#7a8fa6]"
+          className="bg-transparent border-none outline-none text-white w-full text-[14px] placeholder:text-xp-muted"
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               triggerSearch();
@@ -130,7 +130,7 @@ const TopHeader: FC<TopHeaderProps> = ({
             </span>
             <ChevronDown
               size={14}
-              className="text-[#7a8fa6] transition-transform duration-200"
+              className="text-xp-muted transition-transform duration-200"
               style={{ transform: walletOpen ? 'rotate(180deg)' : 'none' }}
             />
           </button>
@@ -144,7 +144,7 @@ const TopHeader: FC<TopHeaderProps> = ({
                 onClick={handleCopyAddress}
                 className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-transparent border-none text-white cursor-pointer hover:bg-white/5 text-[13px] font-medium text-left"
               >
-                <Copy size={16} className="text-[#7a8fa6]" /> Copy address
+                <Copy size={16} className="text-xp-muted" /> Copy address
               </button>
 
               {/* Change wallet — opens the wallet adapter modal */}
@@ -155,7 +155,7 @@ const TopHeader: FC<TopHeaderProps> = ({
                 }}
                 className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-transparent border-none text-white cursor-pointer hover:bg-white/5 text-[13px] font-medium text-left shadow-none h-auto justify-start"
               >
-                <RefreshCcw size={16} className="text-[#7a8fa6]" />
+                <RefreshCcw size={16} className="text-xp-muted" />
                 <span>Change wallet</span>
               </button>
 
@@ -166,7 +166,7 @@ const TopHeader: FC<TopHeaderProps> = ({
                   onDisconnect();
                   setWalletOpen(false);
                 }}
-                className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-transparent border-none text-[#ff4a4a] cursor-pointer hover:bg-[#ff4a4a]/10 text-[13px] font-medium text-left"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-transparent border-none text-xp-danger cursor-pointer hover:bg-xp-danger/10 text-[13px] font-medium text-left"
               >
                 <LogOut size={16} /> Disconnect
               </button>
@@ -191,7 +191,7 @@ const TopHeader: FC<TopHeaderProps> = ({
           >
             <Settings
               size={18}
-              className={settingsOpen ? 'text-[#dea001]' : 'text-[#7a8fa6]'}
+              className={settingsOpen ? 'text-xp-gold' : 'text-xp-muted'}
             />
           </button>
 
@@ -216,7 +216,7 @@ const TopHeader: FC<TopHeaderProps> = ({
 
               {/* Network Selector */}
               <div>
-                <span className="text-[#7a8fa6] text-[12px] font-semibold block mb-2">
+                <span className="text-xp-muted text-[12px] font-semibold block mb-2">
                   Network
                 </span>
                 <div className="flex flex-col gap-1.5">
@@ -243,7 +243,7 @@ const TopHeader: FC<TopHeaderProps> = ({
                 <>
                   <div className="h-[1px] mt-2 mb-1" style={{ backgroundColor: C.border }} />
                   <div>
-                    <span className="text-[#dea001] text-[12px] font-semibold block mb-2 uppercase tracking-wide">
+                    <span className="text-xp-gold text-[12px] font-semibold block mb-2 uppercase tracking-wide">
                       Developer Tools
                     </span>
                     <button
@@ -251,7 +251,7 @@ const TopHeader: FC<TopHeaderProps> = ({
                         if (onRequestAirdrop) onRequestAirdrop();
                         setSettingsOpen(false); // Cierra el menú automáticamente
                       }}
-                      className="w-full py-2.5 rounded-lg font-bold text-[13px] border-none cursor-pointer transition-all bg-[#dea001] text-black hover:bg-[#dea001]/90 shadow-[0_0_10px_rgba(222,160,1,0.2)]"
+                      className="w-full py-2.5 rounded-lg font-bold text-[13px] border-none cursor-pointer transition-all bg-xp-gold text-black hover:bg-xp-gold/90 shadow-[0_0_10px_rgba(222,160,1,0.2)]"
                     >
                       Request 1 SOL (Airdrop)
                     </button>

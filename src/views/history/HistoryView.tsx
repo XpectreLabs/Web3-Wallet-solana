@@ -203,7 +203,7 @@ export const HistoryView: FC<{ initialSearch?: string }> = ({ initialSearch = ''
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-white mb-2">Transaction History</h1>
-        <p className="text-[#7a8fa6] text-[15px]">
+        <p className="text-xp-muted text-[15px]">
           View all your Solana transactions in one place
         </p>
       </div>
@@ -223,12 +223,12 @@ export const HistoryView: FC<{ initialSearch?: string }> = ({ initialSearch = ''
           style={{ backgroundColor: C.surface, border: `1px solid ${C.red}40` }}
         >
           <div className="flex items-center gap-3">
-            <AlertCircle size={20} className="text-[#ff4a4a] shrink-0" />
+            <AlertCircle size={20} className="text-xp-danger shrink-0" />
             <p className="text-white font-semibold">Ocurrió un error</p>
           </div>
           <button
             onClick={() => refresh()}
-            className="px-4 py-2 bg-[#ff4a4a]/10 hover:bg-[#ff4a4a]/20 text-[#ff4a4a] rounded-xl font-bold text-[14px] transition-colors cursor-pointer border-none"
+            className="px-4 py-2 bg-xp-danger/10 hover:bg-xp-danger/20 text-xp-danger rounded-xl font-bold text-[14px] transition-colors cursor-pointer border-none"
           >
             Reintentar
           </button>
@@ -240,8 +240,8 @@ export const HistoryView: FC<{ initialSearch?: string }> = ({ initialSearch = ''
       {/* Loading state (initial) */}
       {loading && transactions.length === 0 && (
         <div className="flex items-center justify-center py-16">
-          <Loader size={24} className="text-[#dea001] animate-spin" />
-          <p className="ml-3 text-[#7a8fa6] font-medium">Loading transactions...</p>
+          <Loader size={24} className="text-xp-gold animate-spin" />
+          <p className="ml-3 text-xp-muted font-medium">Loading transactions...</p>
         </div>
       )}
 
@@ -251,8 +251,8 @@ export const HistoryView: FC<{ initialSearch?: string }> = ({ initialSearch = ''
           className="rounded-2xl p-12 text-center"
           style={{ backgroundColor: C.surface, border: `1px solid ${C.border}` }}
         >
-          <p className="text-[#7a8fa6] text-[15px] mb-2">No transactions found</p>
-          <p className="text-[#7a8fa6] text-[13px]">
+          <p className="text-xp-muted text-[15px] mb-2">No transactions found</p>
+          <p className="text-xp-muted text-[13px]">
             Your transaction history will appear here once you send or receive SOL
           </p>
         </div>
@@ -264,8 +264,8 @@ export const HistoryView: FC<{ initialSearch?: string }> = ({ initialSearch = ''
           className="rounded-2xl p-12 text-center"
           style={{ backgroundColor: C.surface, border: `1px solid ${C.border}` }}
         >
-          <p className="text-[#7a8fa6] text-[15px] mb-2">No matching transactions</p>
-          <p className="text-[#7a8fa6] text-[13px]">
+          <p className="text-xp-muted text-[15px] mb-2">No matching transactions</p>
+          <p className="text-xp-muted text-[13px]">
             Try adjusting your filters or search criteria
           </p>
         </div>

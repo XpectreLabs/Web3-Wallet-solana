@@ -87,7 +87,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
             className="w-full flex items-center justify-between p-4 bg-transparent border-none border-b border-[#dea001]/10 text-white cursor-pointer hover:bg-white/[0.02] transition-colors"
           >
             <span className="flex items-center gap-3 text-[15px] font-semibold">
-              <Copy size={18} className="text-[#7a8fa6]" /> Copy address
+              <Copy size={18} className="text-xp-muted" /> Copy address
             </span>
           </button>
 
@@ -96,7 +96,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
               onClick={() => setVisible(true)}
               className="w-full flex items-center justify-start gap-3 p-4 bg-transparent border-none text-white cursor-pointer hover:bg-white/[0.02] transition-colors rounded-none h-auto text-[15px] font-semibold shadow-none"
             >
-              <RefreshCcw size={18} className="text-[#7a8fa6]" />
+              <RefreshCcw size={18} className="text-xp-muted" />
               <span>Change wallet</span>
             </button>
           </div>
@@ -141,17 +141,17 @@ export const SettingsView: FC<SettingsViewProps> = ({
       {/* Developer Tools (Faucet) - Solo visible en Devnet */}
       {networkUI === 'Devnet' && (
         <div>
-          <h2 className="text-[#dea001] text-lg font-bold mb-4 px-1 tracking-wide">Developer Tools</h2>
+          <h2 className="text-xp-gold text-lg font-bold mb-4 px-1 tracking-wide">Developer Tools</h2>
           <div
-            className="rounded-2xl border p-5 bg-[#dea001]/5"
+            className="rounded-2xl border p-5 bg-xp-gold/5"
             style={{ borderColor: 'rgba(222, 160, 1, 0.2)' }}
           >
-            <p className="text-[#7a8fa6] text-[14px] mb-5 leading-relaxed">
+            <p className="text-xp-muted text-[14px] mb-5 leading-relaxed">
               Actualmente estás conectado a la red de pruebas (Devnet). Ve al Faucet oficial para solicitar fondos y realizar transacciones sin usar SOL real. Se copiará tu dirección automáticamente.
             </p>
             <button
               onClick={handleGoToFaucet}
-              className="w-full py-3 rounded-xl font-bold border-none cursor-pointer bg-[#dea001] text-black hover:bg-[#dea001]/90 shadow-[0_0_15px_rgba(222,160,1,0.2)] transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl font-bold border-none cursor-pointer bg-xp-gold text-black hover:bg-xp-gold/90 shadow-[0_0_15px_rgba(222,160,1,0.2)] transition-all flex items-center justify-center gap-2"
             >
               Ir al Faucet de Solana
             </button>
@@ -169,7 +169,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
           >
             <div>
               <span className="text-white text-[15px] font-semibold">Autoconnect</span>
-              <p className="text-[#7a8fa6] text-[12px] mt-1">
+              <p className="text-xp-muted text-[12px] mt-1">
                 Automatically reconnect wallet on page reload
               </p>
             </div>
@@ -182,7 +182,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
       <div>
         <div className="flex items-center justify-between mb-4 px-1">
           <h2 className="text-white text-lg font-bold tracking-wide flex items-center gap-2">
-            <Shield size={20} className="text-[#dea001]" /> Security Audit Logs
+            <Shield size={20} className="text-xp-gold" /> Security Audit Logs
           </h2>
           {logs.length > 0 && (
             <button
@@ -203,7 +203,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
           }}
         >
           {logs.length === 0 ? (
-            <div className="text-center py-6 text-[#7a8fa6] text-[13px]">
+            <div className="text-center py-6 text-xp-muted text-[13px]">
               No security events recorded yet.
             </div>
           ) : (
@@ -224,17 +224,20 @@ export const SettingsView: FC<SettingsViewProps> = ({
                       {log.category === 'security' && <AlertTriangle size={15} className="text-[#ff4a4a]" />}
                       {log.category === 'transaction' && <CheckCircle size={15} className="text-[#4ade80]" />}
                       {log.category === 'settings' && <Settings size={15} className="text-[#dea001]" />}
+                      {log.category === 'security' && <AlertTriangle size={15} className="text-xp-error" />}
+                      {log.category === 'transaction' && <CheckCircle size={15} className="text-xp-success" />}
+                      {log.category === 'settings' && <Settings size={15} className="text-xp-gold" />}
                     </span>
                     <div>
                       <p className="text-white text-[13px] font-medium leading-relaxed">
                         {log.details}
                       </p>
-                      <span className="text-[10px] text-[#7a8fa6] mt-1 block font-mono">
+                      <span className="text-[10px] text-xp-muted mt-1 block font-mono">
                         Action: {log.action}
                       </span>
                     </div>
                   </div>
-                  <span className="text-[10px] text-[#7a8fa6] font-mono whitespace-nowrap pt-0.5">
+                  <span className="text-[10px] text-xp-muted font-mono whitespace-nowrap pt-0.5">
                     {dateStr}
                   </span>
                 </div>
@@ -245,7 +248,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
       </div>
 
       {/* Version Footer */}
-      <p className="text-[#7a8fa6] text-[11px] text-center">
+      <p className="text-xp-muted text-[11px] text-center">
         Xpectre Labs v1.0 · Build 2026.06
       </p>
     </div>

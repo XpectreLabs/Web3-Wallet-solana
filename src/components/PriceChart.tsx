@@ -205,14 +205,14 @@ export const PriceChart: FC = () => {
                   borderTopColor: C.gold,
                 }}
               />
-              <span className="text-[#7a8fa6] text-[13px]">Loading chart...</span>
+              <span className="text-xp-muted text-[13px]">Loading chart...</span>
             </div>
           </div>
         )}
 
         {!loading && error && (
           <div className="h-full w-full flex items-center justify-center">
-            <p className="text-[#7a8fa6] text-[14px]">{error}</p>
+            <p className="text-xp-muted text-[14px]">{error}</p>
           </div>
         )}
 
