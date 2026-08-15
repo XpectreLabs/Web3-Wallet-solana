@@ -6,6 +6,7 @@ import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 
 import { C, NetworkUI } from '../../utils/theme';
+import { SOLANA_FAUCET_URL } from '../../utils/constants';
 import { getAuditEvents, clearAuditEvents, logAuditEvent, AuditEvent } from '../../utils/security/auditLogger';
 
 interface SettingsViewProps {
@@ -69,7 +70,7 @@ export const SettingsView: FC<SettingsViewProps> = ({
   const handleGoToFaucet = () => {
     copy(publicKeyStr, 'Address copied! Paste it in the Faucet.');
     logAuditEvent('settings', 'faucet_redirect', 'Copied address and redirected to official Solana Faucet');
-    window.open('https://faucet.solana.com/', '_blank');
+    window.open(SOLANA_FAUCET_URL, '_blank');
   };
 
   return (

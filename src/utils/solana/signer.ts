@@ -4,6 +4,7 @@ import {
     SystemProgram,
     TransactionMessage,
     VersionedTransaction,
+    LAMPORTS_PER_SOL,
 } from '@solana/web3.js';
 import {
     getAssociatedTokenAddress,
@@ -73,7 +74,7 @@ export async function executeTransfer({
     // 2. Instruction construction based on transfer type
     if (type === 'sol') {
         // Send native SOL: 1 SOL = 10^9 Lamports
-        const lamports = amount * 1_000_000_000;
+        const lamports = amount * LAMPORTS_PER_SOL;
         instructions.push(
             SystemProgram.transfer({
                 fromPubkey: senderPublicKey,

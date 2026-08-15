@@ -3,6 +3,14 @@ import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 
+import {
+  COINGECKO_SOL_PRICE_URL,
+  JUPITER_PRICE_API_URL,
+  SOL_MINT_ADDRESS,
+  PRICE_REFRESH_INTERVAL_MS,
+  PRICE_FETCH_TIMEOUT_MS,
+} from '../../utils/constants';
+
 import { HistoryView } from '../history/HistoryView';
 
 import { RecentActivity } from '../../components/RecentActivity';
@@ -89,8 +97,8 @@ export const HomeView: FC = () => {
     const fetchPrice = async () => {
       try {
         const r = await fetch(
-          'https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true',
-          { signal: AbortSignal.timeout(8000) }
+          COINGECKO_SOL_PRICE_URL,
+          { signal: AbortSignal.timeout(PRICE_FETCH_TIMEOUT_MS) }
         );
         if (!r.ok) throw new Error('CoinGecko unavailable');
         const d = await r.json();
@@ -101,12 +109,12 @@ export const HomeView: FC = () => {
       } catch {
         try {
           const r2 = await fetch(
-            'https://api.jup.ag/price/v2?ids=So11111111111111111111111111111111111111112'
+            `${JUPITER_PRICE_API_URL}?ids=${SOL_MINT_ADDRESS}`
           );
           if (!r2.ok) throw new Error('Jupiter unavailable');
           const d2 = await r2.json();
           const p =
-            d2?.data?.['So11111111111111111111111111111111111111112']?.price;
+            d2?.data?.[SOL_MINT_ADDRESS]?.price;
           if (mounted && p) setSolPrice(parseFloat(p));
         } catch {
           /* Price unavailable — keep null */
@@ -115,7 +123,7 @@ export const HomeView: FC = () => {
     };
 
     fetchPrice();
-    const id = setInterval(fetchPrice, 60_000);
+    const id = setInterval(fetchPrice, PRICE_REFRESH_INTERVAL_MS);
     return () => {
       mounted = false;
       clearInterval(id);
