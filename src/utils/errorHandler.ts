@@ -1,3 +1,5 @@
+import { ERROR_CODES, ERROR_MESSAGES, ERROR_RULES } from './errorConstants';
+
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 /**
@@ -26,57 +28,19 @@ export interface WalletError {
 function classifySolanaError(raw: string): Pick<WalletError, 'code' | 'message'> {
     const msg = raw.toLowerCase();
 
-    if (msg.includes('user rejected') || msg.includes('transaction cancelled')) {
-        return {
-            code: 'USER_REJECTED',
-            message: 'Transaction was cancelled from your wallet.',
-        };
-    }
-
-    if (msg.includes('insufficient funds') || msg.includes('0x1')) {
-        return {
-            code: 'INSUFFICIENT_FUNDS',
-            message: 'Insufficient funds to complete this operation.',
-        };
-    }
-
-    if (msg.includes('blockhash not found') || msg.includes('block height exceeded')) {
-        return {
-            code: 'BLOCKHASH_EXPIRED',
-            message: 'The transaction expired. Please try again.',
-        };
-    }
-
-    if (msg.includes('invalid public key') || msg.includes('non-base58')) {
-        return {
-            code: 'INVALID_ADDRESS',
-            message: 'The address provided is not a valid Solana public key.',
-        };
-    }
-
-    if (msg.includes('network') || msg.includes('fetch') || msg.includes('econnrefused')) {
-        return {
-            code: 'NETWORK_ERROR',
-            message: 'Could not connect to the Solana network. Check your internet connection.',
-        };
-    }
-
-    if (
-        msg.includes('could_not_find_any_route') ||
-        msg.includes('could not find any route') ||
-        msg.includes('no route found') ||
-        msg.includes('route')
-    ) {
-        return {
-            code: 'SLIPPAGE_TOO_LOW',
-            message: 'No route found with the current slippage tolerance. Try increasing it.',
-        };
+    for (const rule of ERROR_RULES) {
+        if (rule.patterns.some((pattern) => msg.includes(pattern))) {
+            return {
+                code: rule.code,
+                message: rule.message,
+            };
+        }
     }
 
     // Fallback for any unrecognised Solana error
     return {
-        code: 'UNKNOWN_SOLANA_ERROR',
-        message: 'An unexpected error occurred on the Solana network. Please try again.',
+        code: ERROR_CODES.UNKNOWN_SOLANA_ERROR,
+        message: ERROR_MESSAGES.UNKNOWN_SOLANA_ERROR,
     };
 }
 
@@ -108,32 +72,34 @@ export function handleError(error: unknown, context?: string): WalletError {
     // Always print the raw error so the developer can debug via DevTools
     console.error(`${prefix}`, error);
 
-    let classified: Pick<WalletError, 'code' | 'message'>;
-    let rawError: unknown = error;
-
     // ── Case 1: Standard JavaScript Error object ───────────────────────────
     if (error instanceof Error) {
-        classified = classifySolanaError(error.message);
-    }
-    // ── Case 2: Plain string was thrown (e.g. throw "something failed") ───
-    else if (typeof error === 'string') {
-        classified = classifySolanaError(error);
-    }
-    // ── Case 3: Completely unknown shape (object, null, number, etc.) ──────
-    else {
-        classified = {
-            code: 'UNKNOWN_ERROR',
-            message: 'An unexpected error occurred. Please try again.',
+        const classified = classifySolanaError(error.message);
+        if (classified.code === ERROR_CODES.NETWORK_ERROR && typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('xpectre_connection_lost'));
+        }
+        return {
+            ...classified,
+            raw: error,
         };
     }
 
-    // Trigger global connection loss screen if it's a network/connection error
-    if (classified.code === 'NETWORK_ERROR' && typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('xpectre_connection_lost'));
+    // ── Case 2: Plain string was thrown (e.g. throw "something failed") ───
+    if (typeof error === 'string') {
+        const classified = classifySolanaError(error);
+        if (classified.code === ERROR_CODES.NETWORK_ERROR && typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('xpectre_connection_lost'));
+        }
+        return {
+            ...classified,
+            raw: error,
+        };
     }
 
+    // ── Case 3: Completely unknown shape (object, null, number, etc.) ──────
     return {
-        ...classified,
-        raw: rawError,
+        code: ERROR_CODES.UNKNOWN_ERROR,
+        message: ERROR_MESSAGES.UNKNOWN_ERROR,
+        raw: error,
     };
 }
