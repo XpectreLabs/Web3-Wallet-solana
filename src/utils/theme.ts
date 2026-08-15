@@ -9,3 +9,18 @@ export const C = {
   red: '#ff4a4a',
   border: 'rgba(222, 160, 1, 0.1)',
 } as const;
+
+export type NetworkUI = 'Mainnet' | 'Devnet' | 'Testnet';
+
+export const NET_MAP: Record<NetworkUI, string> = {
+  Mainnet: 'mainnet-beta',
+  Devnet: 'devnet',
+  Testnet: 'testnet',
+};
+
+export const NET_MAP_INVERSE: Record<string, NetworkUI> = {
+  'mainnet-beta': 'Mainnet',
+  'devnet': 'Devnet',
+  'testnet': 'Testnet',
+};
+

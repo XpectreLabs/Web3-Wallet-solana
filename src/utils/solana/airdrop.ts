@@ -1,7 +1,6 @@
 import { Connection, LAMPORTS_PER_SOL, PublicKey, TransactionSignature } from '@solana/web3.js';
 import { handleError } from '../errorHandler';
-
-const FAUCET_API = 'https://faucet.solana.com';
+import { SOLANA_FAUCET_URL } from '../constants';
 
 export interface AirdropResult {
     signature: TransactionSignature;
@@ -43,7 +42,7 @@ export async function requestAirdrop(
 
     // ── 2. Devnet/Testnet: official Solana faucet API ────────────────────────
     try {
-        const resp = await fetch(`${FAUCET_API}/api/request_airdrop`, {
+        const resp = await fetch(`${SOLANA_FAUCET_URL}/api/request_airdrop`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

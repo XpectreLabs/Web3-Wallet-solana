@@ -1,4 +1,11 @@
 import { ERROR_CODES } from '../errorConstants';
+import {
+  JUPITER_QUOTE_URL,
+  JUPITER_SWAP_URL,
+  JUPITER_FALLBACK_QUOTE_URL,
+  JUPITER_FALLBACK_SWAP_URL,
+  JUPITER_TOKEN_LIST_URL,
+} from '../constants';
 
 export interface JupiterToken {
   address: string;
@@ -58,7 +65,7 @@ export async function getJupiterQuote(
 
   // 2. Try the official Jupiter API first
   try {
-    const url = `https://quote-api.jup.ag/v6/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amountInMinUnits}&slippageBps=${slippageBps}`;
+    const url = `${JUPITER_QUOTE_URL}?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amountInMinUnits}&slippageBps=${slippageBps}`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
@@ -86,7 +93,7 @@ export async function getJupiterQuote(
   }
 
   // 3. Fallback to the QuickNode public mirror (limited token support: SOL, USDC, USDT)
-  const url = `https://public.jupiterapi.com/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amountInMinUnits}&slippageBps=${slippageBps}`;
+  const url = `${JUPITER_FALLBACK_QUOTE_URL}?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amountInMinUnits}&slippageBps=${slippageBps}`;
   const response = await fetch(url);
   if (!response.ok) {
       const errorText = await response.text();
@@ -146,7 +153,7 @@ export async function getJupiterTokens(): Promise<JupiterToken[]> {
   }
 
   try {
-    const res = await fetch('https://token.jup.ag/strict');
+    const res = await fetch(JUPITER_TOKEN_LIST_URL);
     if (!res.ok) return FALLBACK_TOKENS;
     
     const list = await res.json() as JupiterToken[];
@@ -180,7 +187,7 @@ export async function getJupiterSwapTransaction(
 
   // 1. Try the official Jupiter API first
   try {
-    const response = await fetch('https://quote-api.jup.ag/v6/swap', {
+    const response = await fetch(JUPITER_SWAP_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
@@ -196,7 +203,7 @@ export async function getJupiterSwapTransaction(
   }
 
   // 2. Fallback to the QuickNode public mirror
-  const url = 'https://public.jupiterapi.com/swap';
+  const url = JUPITER_FALLBACK_SWAP_URL;
   try {
     const response = await fetch(url, {
       method: 'POST',
