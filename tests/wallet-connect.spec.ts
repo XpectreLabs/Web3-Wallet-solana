@@ -18,7 +18,7 @@ test('user can complete the main critical path: interact with all sections, moda
   await expect(page.getByRole('heading', { name: 'SOL Price History' })).toBeVisible({ timeout: 10_000 });
 
   // 2. DASHBOARD: Scroll, Gráfica y Modales
-  await page.mouse.wheel(0, 500);
+  await page.evaluate(() => window.scrollBy(0, 500));
   await page.waitForTimeout(500);
 
   // Interactuar con los rangos de tiempo de la gráfica
@@ -31,7 +31,7 @@ test('user can complete the main critical path: interact with all sections, moda
   await page.getByText('7D', { exact: true }).click();
   await page.waitForTimeout(500);
 
-  await page.mouse.wheel(0, -500);
+  await page.evaluate(() => window.scrollBy(0, -500));
   await page.waitForTimeout(500);
 
   // Modales
@@ -53,17 +53,17 @@ test('user can complete the main critical path: interact with all sections, moda
   // 3. HISTORY: Navegación y Scroll
   await page.getByRole('button', { name: 'History', exact: true }).first().click();
   await page.waitForTimeout(500);
-  await page.mouse.wheel(0, 800);
+  await page.evaluate(() => window.scrollBy(0, 800));
   await page.waitForTimeout(500);
-  await page.mouse.wheel(0, -800);
+  await page.evaluate(() => window.scrollBy(0, -800));
   await page.waitForTimeout(500);
 
   // 4. SETTINGS: Navegación y Scroll
   await page.getByRole('button', { name: 'Settings', exact: true }).first().click();
   await page.waitForTimeout(500);
-  await page.mouse.wheel(0, 800);
+  await page.evaluate(() => window.scrollBy(0, 800));
   await page.waitForTimeout(500);
-  await page.mouse.wheel(0, -800);
+  await page.evaluate(() => window.scrollBy(0, -800));
   await page.waitForTimeout(500);
 
   // 5. REGRESO A HOME Y SIDEBAR
@@ -162,7 +162,9 @@ test('shows validation error for invalid Solana address in Send modal', async ({
   // await expect(page.getByRole('button', { name: /Send/i }).last()).toBeDisabled();
 });
 
-test('copy address button successfully copies to clipboard', async ({ page, context }) => {
+test('copy address button successfully copies to clipboard', async ({ page, context, browserName }) => {
+  test.skip(browserName === 'webkit', 'WebKit no soporta permisos automatizados de portapapeles');
+  
   // Le damos permiso a Playwright para usar el portapapeles
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
 

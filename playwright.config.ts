@@ -19,6 +19,11 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    // Agregamos la configuración para probar en versión móvil
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 13'] },
+    },
   ],
 
   // Automatically starts your Next.js dev server before running tests
@@ -29,5 +34,3 @@ export default defineConfig({
     timeout: 120_000, // Le subimos el tiempo porque el build tarda un poco
   },
 });
-
-
