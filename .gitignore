@@ -29,6 +29,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env.test
 
 # vercel
 .vercel
@@ -44,3 +45,12 @@ yarn-error.log*
 *.json.bak
 
 *.env.local
+.env.local
+.env.test
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

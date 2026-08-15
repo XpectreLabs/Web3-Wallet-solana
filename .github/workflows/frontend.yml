@@ -2,9 +2,9 @@ name: Frontend
 
 on:
   push:
-    branches: [main]
+    branches: [main, Dev]
   pull_request:
-    branches: [main]
+    branches: [main, Dev]
 
 jobs:
   build:
@@ -18,6 +18,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20.x"
+          architecture: "x64"
+        env:
+          FORCE_NODE_VERSION: "20"
       - run: yarn install
       - name: Build
         run: yarn build
