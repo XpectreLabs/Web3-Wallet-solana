@@ -106,6 +106,17 @@ yarn playwright show-report
 
 ---
 
+## Roadmap
+
+Work currently in flight — each item is an open pull request or an active branch:
+
+- **Mobile navigation refactor** — expandable search, bottom nav rework and viewport height fixes ([#134](https://github.com/XpectreLabs/Web3-Wallet-solana/pull/134))
+- **Next.js 13 → 16 upgrade** ([#143](https://github.com/XpectreLabs/Web3-Wallet-solana/pull/143))
+- **Dynamic mint decimals for SPL transfers** — the transfer builder currently assumes 9 decimals; reading precision from the mint makes it correct for every token
+- **Expanded Playwright coverage** — additional mobile Safari and WebKit paths ([`test/e2e-setup`](https://github.com/XpectreLabs/Web3-Wallet-solana/tree/test/e2e-setup))
+
+---
+
 ## Contributing
 
 Anyone is welcome to open an issue to discuss, build, or request a feature. Please follow the existing project architecture and style when contributing.

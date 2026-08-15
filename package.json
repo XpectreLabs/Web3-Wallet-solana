@@ -1,8 +1,8 @@
 {
-  "name": "solana-dapp-next",
+  "name": "xpectre-wallet",
   "version": "0.2.0",
-  "author": "Solana Maintainers <maintainers@solana.foundation>",
-  "license": "MIT",
+  "author": "XpectreLabs",
+  "license": "Apache-2.0",
   "private": false,
   "scripts": {
     "dev": "next dev",
