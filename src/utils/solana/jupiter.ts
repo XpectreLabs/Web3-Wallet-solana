@@ -134,15 +134,28 @@ const FALLBACK_TOKENS: JupiterToken[] = [
   }
 ];
 
+let cachedJupiterTokens: JupiterToken[] | null = null;
+
 /**
  * Fetches the strict list of verified tokens from Jupiter.
+ * Uses an in-memory cache to prevent redundant network requests.
  */
 export async function getJupiterTokens(): Promise<JupiterToken[]> {
+  if (cachedJupiterTokens) {
+    return cachedJupiterTokens;
+  }
+
   try {
     const res = await fetch('https://token.jup.ag/strict');
     if (!res.ok) return FALLBACK_TOKENS;
+    
     const list = await res.json() as JupiterToken[];
-    return list.length > 0 ? list : FALLBACK_TOKENS;
+    if (list.length > 0) {
+      cachedJupiterTokens = list;
+      return list;
+    }
+    
+    return FALLBACK_TOKENS;
   } catch (err) {
     console.error('Failed to fetch Jupiter tokens:', err);
     return FALLBACK_TOKENS;

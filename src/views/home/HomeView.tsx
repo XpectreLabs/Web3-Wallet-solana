@@ -1,5 +1,6 @@
 import { FC, useEffect, useState, useCallback } from 'react';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 
 import { HistoryView } from '../history/HistoryView';
@@ -43,7 +44,7 @@ export const HomeView: FC = () => {
   // ── Solana hooks ──────────────────────────
   const { publicKey, connected, disconnect } = useWallet();
   const { connection } = useConnection();
-  const { balance, getUserSOLBalance } = useUserSOLBalanceStore();
+  const { balance, getUserSOLBalance, setBalance } = useUserSOLBalanceStore();
   const { networkConfiguration, setNetworkConfiguration } = useNetworkConfiguration();
   const { autoConnect, setAutoConnect } = useAutoConnect();
 
@@ -162,6 +163,7 @@ export const HomeView: FC = () => {
     else setSplTokens([]);
   }, [connected, publicKey, fetchSPLTokens]);
 
+
   // ── Fetch SOL & SPL Balances + Real-time Listener ─────────────────────
   useEffect(() => {
     if (!publicKey) return;
@@ -172,9 +174,10 @@ export const HomeView: FC = () => {
     // 2. Subscribe to wallet account changes (fires when SOL balance changes, e.g. paying fees)
     const subscriptionId = connection.onAccountChange(
       publicKey,
-      () => {
-        // When the account changes, refresh both SOL and SPL balances
-        getUserSOLBalance(publicKey, connection);
+      (accountInfo) => {
+        // Update store with new lamports directly (saves 1 RPC call)
+        setBalance(accountInfo.lamports / LAMPORTS_PER_SOL);
+        // SPL balances still need an RPC call (or their own websocket)
         fetchSPLTokens();
       },
       'confirmed'
@@ -183,7 +186,7 @@ export const HomeView: FC = () => {
     return () => {
       connection.removeAccountChangeListener(subscriptionId);
     };
-  }, [publicKey, connection, getUserSOLBalance, fetchSPLTokens]);
+  }, [publicKey, connection, getUserSOLBalance, fetchSPLTokens, setBalance]);
 
   // ── Disconnect ────────────────────────────
   const handleDisconnect = useCallback(async () => {

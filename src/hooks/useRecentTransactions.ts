@@ -15,22 +15,15 @@ import { useEffect, useState, useCallback } from 'react';
 import { Connection, PublicKey, ConfirmedSignatureInfo } from '@solana/web3.js';
 import { notify } from '../utils/notifications';
 import { handleError } from '../utils/errorHandler';
+import { parseTransaction } from '../utils/solana/transactionParser';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type TransactionType = 'sent' | 'received' | 'unknown';
+import { ParsedTransaction as RecentTransaction, TransactionType, getConfirmationStatus } from '../utils/solana/transactionParser';
 
-export interface RecentTransaction {
-  signature: string;
-  type: TransactionType;
-  amount: number;
-  address: string;
-  timestamp: number;
-  confirmationStatus: 'confirmed' | 'finalized' | 'processed';
-  symbol: string;
-}
+export type { TransactionType, RecentTransaction };
 
 export interface UseRecentTransactionsState {
   transactions: RecentTransaction[];
@@ -38,15 +31,7 @@ export interface UseRecentTransactionsState {
   error: string | null;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// HELPER: Get confirmation status
-// ═══════════════════════════════════════════════════════════════════════════
 
-function getConfirmationStatus(sig: ConfirmedSignatureInfo): 'confirmed' | 'finalized' | 'processed' {
-  if (sig.confirmationStatus === 'finalized') return 'finalized';
-  if (sig.confirmationStatus === 'confirmed') return 'confirmed';
-  return 'processed';
-}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MAIN HOOK
@@ -92,71 +77,11 @@ export function useRecentTransactions(
                 maxSupportedTransactionVersion: 0,
               });
 
-              if (!tx) {
-                return {
-                  signature: sig.signature,
-                  type: 'unknown' as TransactionType,
-                  amount: 0,
-                  address: 'Unknown',
-                  timestamp: sig.blockTime ?? Date.now() / 1000,
-                  confirmationStatus: getConfirmationStatus(sig),
-                  symbol: 'SOL',
-                };
-              }
-
-              const meta = tx.meta;
-
-              // Check if transaction failed
-              if (meta?.err) {
-                return {
-                  signature: sig.signature,
-                  type: 'unknown' as TransactionType,
-                  amount: 0,
-                  address: 'Failed TX',
-                  timestamp: tx.blockTime ?? Date.now() / 1000,
-                  confirmationStatus: getConfirmationStatus(sig),
-                  symbol: 'SOL',
-                };
-              }
-
-              // Parse instructions to determine sent/received
-              let type: TransactionType = 'unknown';
-              let amount = 0;
-              let address = 'Contract Interaction';
-              let symbol = 'SOL';
-
-              const message = tx.transaction.message;
-
-              for (const instruction of message.instructions) {
-                if ('parsed' in instruction && instruction.program === 'system' && instruction.parsed?.type === 'transfer') {
-                  const parsed = instruction.parsed;
-                  const source = parsed.info?.source;
-                  const destination = parsed.info?.destination;
-                  const transferAmount = parsed.info?.lamports ?? 0;
-
-                  if (source === publicKey.toBase58()) {
-                    type = 'sent';
-                    amount = transferAmount / 1e9;
-                    address = destination;
-                  } else if (destination === publicKey.toBase58()) {
-                    type = 'received';
-                    amount = transferAmount / 1e9;
-                    address = source;
-                  }
-                }
-              }
-
-              return {
-                signature: sig.signature,
-                type,
-                amount,
-                address,
-                timestamp: tx.blockTime ?? Date.now() / 1000,
-                confirmationStatus: getConfirmationStatus(sig),
-                symbol,
-              };
+              const parsedTx = parseTransaction(tx, sig, publicKey);
+              // Extract only what RecentTransaction needs if we were to narrow it, but they are exactly compatible now.
+              return parsedTx;
             } catch (err) {
-              console.error(`Error parsing transaction ${sig.signature}:`, err);
+              const parseErr = handleError(err, 'useRecentTransactions - parse');
               return {
                 signature: sig.signature,
                 type: 'unknown' as TransactionType,
@@ -165,6 +90,7 @@ export function useRecentTransactions(
                 timestamp: sig.blockTime ?? Date.now() / 1000,
                 confirmationStatus: getConfirmationStatus(sig),
                 symbol: 'SOL',
+                fee: 5000,
               };
             }
           })

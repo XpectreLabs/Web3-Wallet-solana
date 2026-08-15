@@ -5,23 +5,25 @@ import { getUserSOLBalance } from '../utils/solana/balance';
 interface UserSOLBalanceStore extends State {
     balance: number;
     getUserSOLBalance: (publicKey: PublicKey, connection: Connection) => void;
+    setBalance: (balance: number) => void;
 }
 
 const useUserSOLBalanceStore = create<UserSOLBalanceStore>((set) => ({
     balance: 0,
     getUserSOLBalance: async (publicKey, connection) => {
-        // Delegate the actual RPC query to the solana/balance helper
         const balance = await getUserSOLBalance(publicKey, connection);
-
-        // balance is null when an error occurred — keep the previous store value
-        // so the UI does not display a misleading zero or crash.
         if (balance === null) return;
-
         set({ balance });
         if (process.env.NODE_ENV === 'development') {
-            console.log('Balance updated:', balance, 'SOL');
+            console.log('Balance updated via RPC:', balance, 'SOL');
         }
     },
+    setBalance: (balance: number) => {
+        set({ balance });
+        if (process.env.NODE_ENV === 'development') {
+            console.log('Balance updated via WebSocket:', balance, 'SOL');
+        }
+    }
 }));
 
 export default useUserSOLBalanceStore;
