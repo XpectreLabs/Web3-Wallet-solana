@@ -3938,15 +3938,10 @@ ignore@^5.2.0:
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.2.4.tgz"
   integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
 
-immer@^11.0.0, immer@^11.1.8:
-  version "11.1.11"
-  resolved "https://registry.npmjs.org/immer/-/immer-11.1.11.tgz"
-  integrity sha512-qzXuyXAkPySAGYkfsAwodDPWT8Zm7/Uo5BNt4BjhMhG5WlWyZZ4wQqnWwdS8kjlQ1Cwu6gjw3A6+0gTQwlyYtw==
-
-immer@^9.0.12:
-  version "9.0.18"
-  resolved "https://registry.npmjs.org/immer/-/immer-9.0.18.tgz"
-  integrity sha512-eAPNpsj7Ax1q6Y/3lm2PmlwRcFzpON7HSNQ3ru5WQH1/PSpnyed/HpNOELl2CxLKoj4r+bAHgdyKqW5gc2Se1A==
+immer@^11.0.0, immer@^11.1.16, immer@^11.1.8:
+  version "11.1.16"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-11.1.16.tgz#66702b60de57fda6a0b57eef52c84258cc4aac9b"
+  integrity sha512-Xs7H9rBc+kti1J6RueUvbEBkmOz7jqj11XYgf+YMXAYzu8EeE7hwZ9poLXdVfVnGmJu7QAf41T7H2KuF6QoK6Q==
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
