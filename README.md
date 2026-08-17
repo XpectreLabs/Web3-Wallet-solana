@@ -20,8 +20,6 @@ Xpectre Wallet is a decentralized application (dApp) built on Solana, designed t
 
 ## Getting Started
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and built on the Solana dApp Scaffold, configured for the Solana ecosystem.
-
 ### Installation
 
 ```bash
@@ -40,11 +38,15 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The app defaults to Devnet; switch networks from the settings view.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Docker
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`. The `pages/api` directory is mapped to `/api/*`; files in this directory are treated as API routes instead of React pages.
+```bash
+docker compose up --build
+```
+
+Serves the production build on [http://localhost:3000](http://localhost:3000). The image is multi-stage and ships only the Next.js standalone output.
 
 ---
 

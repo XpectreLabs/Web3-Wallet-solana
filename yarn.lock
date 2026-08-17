@@ -61,9 +61,9 @@
     "@jridgewell/trace-mapping" "0.3.9"
 
 "@emnapi/runtime@^1.7.0":
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-1.11.2.tgz#eb22f04d76febfdf4f87fdaff54c8a53f6bf0dbd"
-  integrity sha512-kyOl3X0DuTiT1h2ft8r2fYO8JYtU9a9Xis/zBSiGArNaagCOWx90N1k2wxp18czFDH+OgcWGb5ZP/XMt3dcyPA==
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-1.11.3.tgz#84257ae3b0531eb2aec1ffa23d70700da007ba95"
+  integrity sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==
   dependencies:
     tslib "^2.4.0"
 
@@ -136,7 +136,7 @@
 
 "@img/sharp-darwin-arm64@0.34.5":
   version "0.34.5"
-  resolved "https://registry.yarnpkg.com/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz#6e0732dcade126b6670af7aa17060b926835ea86"
+  resolved "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz"
   integrity sha512-imtQ3WMJXbMY4fxb/Ndp6HBTNVtWCUI0WdobyheGf5+ad6xX8VIDO8u2xE4qc/fr08CKG/7dDseFtn6M6g/r3w==
   optionalDependencies:
     "@img/sharp-libvips-darwin-arm64" "1.2.4"
@@ -150,7 +150,7 @@
 
 "@img/sharp-libvips-darwin-arm64@1.2.4":
   version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.4.tgz#2894c0cb87d42276c3889942e8e2db517a492c43"
+  resolved "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.4.tgz"
   integrity sha512-zqjjo7RatFfFoP0MkQ51jfuFZBnVE2pRiaydKJ1G/rHZvnsrHAOcQALIi9sA5co5xenQdTugCvtb1cuf78Vf4g==
 
 "@img/sharp-libvips-darwin-x64@1.2.4":
@@ -273,7 +273,7 @@
 
 "@img/sharp-win32-x64@0.34.5":
   version "0.34.5"
-  resolved "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.5.tgz"
+  resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.5.tgz#a81ffb00e69267cd0a1d626eaedb8a8430b2b2f8"
   integrity sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw==
 
 "@jnwng/walletconnect-solana@^0.1.5":
@@ -436,7 +436,7 @@
 
 "@next/swc-darwin-arm64@13.1.5":
   version "13.1.5"
-  resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.1.5.tgz#3f206d22201c6500acce3a9274a807fb07878565"
+  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.1.5.tgz"
   integrity sha512-aeFXK+M/zmG/CNdMJ0tGNs0MWcLueUe7vZ2V6fa+2yz/ZgYJLI7fEfFvVh1p1yBMzupSbZDowvMuCSFTaeg3MA==
 
 "@next/swc-darwin-x64@13.1.5":
@@ -486,7 +486,7 @@
 
 "@next/swc-win32-x64-msvc@13.1.5":
   version "13.1.5"
-  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.1.5.tgz"
+  resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.1.5.tgz#8c7bef3dc41e624050eecb336cbd944a91fa7198"
   integrity sha512-IZHwvd649ccbWyLCfu92IXEpR250NpmBkaRelPV+WVm4jrd62FKRFCNdqdCXq6TrEg9wN8cK4YG8tm44uEZqLA==
 
 "@ngraveio/bc-ur@^1.0.0", "@ngraveio/bc-ur@^1.1.5":
@@ -502,7 +502,7 @@
     jsbi "^3.1.5"
     sha.js "^2.4.11"
 
-"@noble/curves@^1.4.2":
+"@noble/curves@^1.4.2", "@noble/curves@^1.8.2":
   version "1.9.7"
   resolved "https://registry.npmjs.org/@noble/curves/-/curves-1.9.7.tgz"
   integrity sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==
@@ -593,11 +593,11 @@
     tslib "^2.4.0"
 
 "@playwright/test@^1.61.1":
-  version "1.61.1"
-  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.61.1.tgz#48568dc22af7819e55fa5e8e3bc79b7e6a3e6675"
-  integrity sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig==
+  version "1.62.1"
+  resolved "https://registry.npmjs.org/@playwright/test/-/test-1.62.1.tgz"
+  integrity sha512-DTcUc8qii+cpHvtOwggMtBRMjKZHXYWdw8syRYu2vtzuq4Wxphqq4NfCs5Zt44L6mA8rfDfj+PHnxFc/FeK6mQ==
   dependencies:
-    playwright "1.61.1"
+    playwright "1.62.1"
 
 "@project-serum/sol-wallet-adapter@0.2.0":
   version "0.2.0"
@@ -831,15 +831,15 @@
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.22"
 
-"@solana/wallet-adapter-base@^0.9.17", "@solana/wallet-adapter-base@^0.9.21", "@solana/wallet-adapter-base@^0.9.22":
-  version "0.9.22"
-  resolved "https://registry.npmjs.org/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.22.tgz"
-  integrity sha512-xbLEZPGSJFvgTeldG9D55evhl7QK/3e/F7vhvcA97mEt1eieTgeKMnGlmmjs3yivI3/gtZNZeSk1XZLnhKcQvw==
+"@solana/wallet-adapter-base@^0.9.17", "@solana/wallet-adapter-base@^0.9.22", "@solana/wallet-adapter-base@^0.9.24":
+  version "0.9.27"
+  resolved "https://registry.npmjs.org/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.27.tgz"
+  integrity sha512-kXjeNfNFVs/NE9GPmysBRKQ/nf+foSaq3kfVSeMcO/iVgigyRmB551OjU3WyAolLG/1jeEfKLqF9fKwMCRkUqg==
   dependencies:
-    "@solana/wallet-standard-features" "^1.0.1"
-    "@wallet-standard/base" "^1.0.1"
-    "@wallet-standard/features" "^1.0.3"
-    eventemitter3 "^4.0.7"
+    "@solana/wallet-standard-features" "^1.3.0"
+    "@wallet-standard/base" "^1.1.0"
+    "@wallet-standard/features" "^1.1.0"
+    eventemitter3 "^5.0.1"
 
 "@solana/wallet-adapter-bitkeep@^0.3.18":
   version "0.3.18"
@@ -1224,42 +1224,43 @@
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.22"
 
-"@solana/wallet-standard-chains@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-chains/-/wallet-standard-chains-1.0.0.tgz"
-  integrity sha512-kr3+JAo7mEBhVCH9cYzjn/vXeUiZeYfB4BF6E8u3U2jq3KlZA/KB+YM976+zGumTfN0NmMXUm066pTTG9kJsNQ==
+"@solana/wallet-standard-chains@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/@solana/wallet-standard-chains/-/wallet-standard-chains-1.1.2.tgz"
+  integrity sha512-EZobEGclDBAFplpJC5F3d/s8Xnlqc5isNKuPrd5o9ZPZ7tWN84O0e68yIZ8MAOj9V7ieRadNiHtql7uIXCTyXg==
   dependencies:
-    "@wallet-standard/base" "^1.0.0"
+    "@wallet-standard/base" "^1.1.0"
 
-"@solana/wallet-standard-features@^1.0.0", "@solana/wallet-standard-features@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-features/-/wallet-standard-features-1.0.1.tgz"
-  integrity sha512-SUfx7KtBJ55XIj0qAhhVcC1I6MklAXqWFEz9hDHW+6YcJIyvfix/EilBhaBik1FJ2JT0zukpOfFv8zpuAbFRbw==
+"@solana/wallet-standard-features@^1.3.0", "@solana/wallet-standard-features@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@solana/wallet-standard-features/-/wallet-standard-features-1.4.0.tgz"
+  integrity sha512-f0tAdqwM2aL6CiFbIgt9h5zKFp+mgY/iNGwoxPMTj9VSTeQj7d1GGSmWhZw0XWoZ4N/1tnKTKmYFq+Dyq08jRw==
   dependencies:
-    "@wallet-standard/base" "^1.0.1"
-    "@wallet-standard/features" "^1.0.3"
+    "@wallet-standard/base" "^1.1.0"
+    "@wallet-standard/features" "^1.1.0"
 
-"@solana/wallet-standard-util@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-util/-/wallet-standard-util-1.0.0.tgz"
-  integrity sha512-qRAOBXnN7dwvtgzTtxIHsSeJAMbGNZdSWs57TT8pCyBrKL5dVxaK2u95Dm17SRSzwfKl/EByV1lTjOxXyKWS+g==
+"@solana/wallet-standard-util@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.npmjs.org/@solana/wallet-standard-util/-/wallet-standard-util-1.1.3.tgz"
+  integrity sha512-aweR5y5FjYaeS9TkoqAWERFpGUj2MJepsDhcekCuoPLcNCquJL85Nsnuy01tBybspN5+Y09SWkxwsODOFGSfkg==
   dependencies:
-    "@solana/wallet-standard-chains" "^1.0.0"
-    "@solana/wallet-standard-features" "^1.0.0"
+    "@noble/curves" "^1.8.2"
+    "@solana/wallet-standard-chains" "^1.1.2"
+    "@solana/wallet-standard-features" "^1.4.0"
 
 "@solana/wallet-standard-wallet-adapter-base@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-wallet-adapter-base/-/wallet-standard-wallet-adapter-base-1.0.2.tgz"
-  integrity sha512-QqkupdWvWuihX87W6ijt174u6ZdP5OSFlNhZhuhoMlIdyI/sj7MhGsdppuRlMh65oVO2WNWTL9y2bO5Pbx+dfg==
+  version "1.1.5"
+  resolved "https://registry.npmjs.org/@solana/wallet-standard-wallet-adapter-base/-/wallet-standard-wallet-adapter-base-1.1.5.tgz"
+  integrity sha512-dbk+4mJAsZ1a2R/v5/Qvp6SleviuSNWd9LnuQ0ekH0HRRJTOWyTBJsdQsVDdAymdPnLAaIN5J10ni1CT2Z+ERg==
   dependencies:
-    "@solana/wallet-adapter-base" "^0.9.21"
-    "@solana/wallet-standard-chains" "^1.0.0"
-    "@solana/wallet-standard-features" "^1.0.1"
-    "@solana/wallet-standard-util" "^1.0.0"
-    "@wallet-standard/app" "^1.0.1"
-    "@wallet-standard/base" "^1.0.1"
-    "@wallet-standard/features" "^1.0.3"
-    "@wallet-standard/wallet" "^1.0.1"
+    "@solana/wallet-adapter-base" "^0.9.24"
+    "@solana/wallet-standard-chains" "^1.1.2"
+    "@solana/wallet-standard-features" "^1.4.0"
+    "@solana/wallet-standard-util" "^1.1.3"
+    "@wallet-standard/app" "^1.1.0"
+    "@wallet-standard/base" "^1.1.0"
+    "@wallet-standard/features" "^1.1.0"
+    "@wallet-standard/wallet" "^1.1.0"
 
 "@solana/wallet-standard-wallet-adapter-react@^1.0.1":
   version "1.0.2"
@@ -1761,31 +1762,31 @@
     "@typescript-eslint/types" "5.49.0"
     eslint-visitor-keys "^3.3.0"
 
-"@wallet-standard/app@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@wallet-standard/app/-/app-1.0.1.tgz"
-  integrity sha512-LnLYq2Vy2guTZ8GQKKSXQK3+FRGPil75XEdkZqE6fiLixJhZJoJa5hT7lXxwe0ykVTt9LEThdTbOpT7KadS26Q==
+"@wallet-standard/app@^1.0.1", "@wallet-standard/app@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@wallet-standard/app/-/app-1.1.1.tgz"
+  integrity sha512-WDGwoByhP5gwHH01r5EaLgQdLVkACPCdOMQhmhn8rsm10h/siSgTorShzBxrn0ExSPof+Lu+C3TfgqBrPa1xoQ==
   dependencies:
-    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/base" "^1.1.1"
 
-"@wallet-standard/base@^1.0.0", "@wallet-standard/base@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@wallet-standard/base/-/base-1.0.1.tgz"
-  integrity sha512-1To3ekMfzhYxe0Yhkpri+Fedq0SYcfrOfJi3vbLjMwF2qiKPjTGLwZkf2C9ftdQmxES+hmxhBzTwF4KgcOwf8w==
+"@wallet-standard/base@^1.0.1", "@wallet-standard/base@^1.1.0", "@wallet-standard/base@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@wallet-standard/base/-/base-1.1.1.tgz"
+  integrity sha512-gggIHTtxicF9XFMQ12DkfS6NAG92Ak795JeSA7f2whAQ6Y3AkMWWuCMxSZXG2NIPN42kEaZSNVjqMsJRaJRxMQ==
 
-"@wallet-standard/features@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@wallet-standard/features/-/features-1.0.3.tgz"
-  integrity sha512-m8475I6W5LTatTZuUz5JJNK42wFRgkJTB0I9tkruMwfqBF2UN2eomkYNVf9RbrsROelCRzSFmugqjKZBFaubsA==
+"@wallet-standard/features@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@wallet-standard/features/-/features-1.1.1.tgz"
+  integrity sha512-aCWYmVeSCGViyEU5k7GMoW8zxE4Gs+C1s1Pp2XLesvSNlnZ4PMES9HUnTB3hl0b3RVj7C61yze3IWyrncqg4MA==
   dependencies:
-    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/base" "^1.1.1"
 
-"@wallet-standard/wallet@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@wallet-standard/wallet/-/wallet-1.0.1.tgz"
-  integrity sha512-qkhJeuQU2afQTZ02yMZE5SFc91Fo3hyFjFkpQglHudENNyiSG0oUKcIjky8X32xVSaumgTZSQUAzpXnCTWHzKQ==
+"@wallet-standard/wallet@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@wallet-standard/wallet/-/wallet-1.1.1.tgz"
+  integrity sha512-8WiRPaKk/wNNRZhB2eVhpR/JW7/aqTCMoZhgVUCujuzDmxxmGvsosMxdCG4NAdYkoyozAHCX8/xLtlWUn5mNdQ==
   dependencies:
-    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/base" "^1.1.1"
 
 "@walletconnect/browser-utils@^1.8.0":
   version "1.8.0"
@@ -2278,9 +2279,9 @@ balanced-match@^1.0.0:
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
 base-x@^3.0.2:
-  version "3.0.9"
-  resolved "https://registry.npmjs.org/base-x/-/base-x-3.0.9.tgz"
-  integrity sha512-H7JU6iBHTal1gp56aKoaa//YUxEaAOUiydvrV/pILqIHXTtqxSkATOnDA2u+jZ/61sD+L/412+7kzXRtWukhpQ==
+  version "3.0.11"
+  resolved "https://registry.npmjs.org/base-x/-/base-x-3.0.11.tgz"
+  integrity sha512-xz7wQ8xDhdyP7tQxwdteLYeFfS68tSMNCZ/Y37WJ4bhGfKPpqEIlmIyueQHqOyoPhE6xNUqjzRr8ra0eF9VRvA==
   dependencies:
     safe-buffer "^5.0.1"
 
@@ -2291,7 +2292,7 @@ base-x@^4.0.0:
 
 base-x@^5.0.0:
   version "5.0.1"
-  resolved "https://registry.yarnpkg.com/base-x/-/base-x-5.0.1.tgz#16bf35254be1df8aca15e36b7c1dda74b2aa6b03"
+  resolved "https://registry.npmjs.org/base-x/-/base-x-5.0.1.tgz"
   integrity sha512-M7uio8Zt++eg3jPj+rHMfCC+IuygQHHCOU+IYsVtik6FWjuYpVt/+MRKcgsAMHh8mMFAwnB+Bs+mTrFiXjMzKg==
 
 base64-js@^1.3.1:
@@ -2471,7 +2472,7 @@ bs58@^5.0.0:
 
 bs58@^6.0.0:
   version "6.0.0"
-  resolved "https://registry.yarnpkg.com/bs58/-/bs58-6.0.0.tgz#a2cda0130558535dd281a2f8697df79caaf425d8"
+  resolved "https://registry.npmjs.org/bs58/-/bs58-6.0.0.tgz"
   integrity sha512-PD0wEnEYg6ijszw/u8s+iI3H17cTymlrwkKhDhPZq+Sokl3AU4htyBFTjAeNAlCCmg0f53g6ih3jATyCKftTfw==
   dependencies:
     base-x "^5.0.0"
@@ -2755,18 +2756,9 @@ create-require@^1.1.0:
   resolved "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
-  integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
-  dependencies:
-    path-key "^3.1.0"
-    shebang-command "^2.0.0"
-    which "^2.0.1"
-
-cross-spawn@^7.0.6:
+cross-spawn@^7.0.2, cross-spawn@^7.0.3, cross-spawn@^7.0.6:
   version "7.0.6"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
+  resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz"
   integrity sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==
   dependencies:
     path-key "^3.1.0"
@@ -3072,7 +3064,7 @@ doctrine@^3.0.0:
 
 dotenv-cli@^11.0.0:
   version "11.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv-cli/-/dotenv-cli-11.0.0.tgz#7115b54e62ef36c3b2d2eb228f8bf4de4c2276bf"
+  resolved "https://registry.npmjs.org/dotenv-cli/-/dotenv-cli-11.0.0.tgz"
   integrity sha512-r5pA8idbk7GFWuHEU7trSTflWcdBpQEK+Aw17UrSHjS6CReuhrrPcyC3zcQBPQvhArRHnBo/h6eLH1fkCvNlww==
   dependencies:
     cross-spawn "^7.0.6"
@@ -3082,19 +3074,19 @@ dotenv-cli@^11.0.0:
 
 dotenv-expand@^12.0.0:
   version "12.0.3"
-  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-12.0.3.tgz#6323ceca51ca0c1b1f0055e2aba39c79781739a6"
+  resolved "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-12.0.3.tgz"
   integrity sha512-uc47g4b+4k/M/SeaW1y4OApx+mtLWl92l5LMPP0GNXctZqELk+YGgOPIIC5elYmUH4OuoK3JLhuRUYegeySiFA==
   dependencies:
     dotenv "^16.4.5"
 
 dotenv@^16.4.5:
   version "16.6.1"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.6.1.tgz#773f0e69527a8315c7285d5ee73c4459d20a8020"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.6.1.tgz"
   integrity sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==
 
 dotenv@^17.1.0, dotenv@^17.4.2:
   version "17.4.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.4.2.tgz#c07e54a746e11eba021dd9e1047ced5afdc1c034"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-17.4.2.tgz"
   integrity sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==
 
 duplexify@^4.1.2:
@@ -3686,15 +3678,10 @@ fs.realpath@^1.0.0:
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
-fsevents@2.3.2:
+fsevents@2.3.2, fsevents@~2.3.2:
   version "2.3.2"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
-
-fsevents@~2.3.2:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -4558,15 +4545,10 @@ multiformats@^9.4.2:
   resolved "https://registry.npmjs.org/multiformats/-/multiformats-9.9.0.tgz"
   integrity sha512-HoMUjhH9T8DDBNT+6xzkrd9ga/XiBI4xLr58LJACwK6G3HTOPeMz4nB4KJs33L2BelrIJa7P0VuNaVF3hMYfjg==
 
-nanoid@3.3.3:
-  version "3.3.3"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.3.tgz"
-  integrity sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==
-
-nanoid@^3.3.4:
-  version "3.3.4"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
-  integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
+nanoid@3.3.3, nanoid@^3.3.18, nanoid@^3.3.4:
+  version "3.3.18"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.18.tgz"
+  integrity sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -4895,17 +4877,17 @@ pino@7.11.0:
     sonic-boom "^2.2.1"
     thread-stream "^0.15.1"
 
-playwright-core@1.61.1:
-  version "1.61.1"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.61.1.tgz#3c99841307efbbabc9d724c41a88c914705d15fc"
-  integrity sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==
+playwright-core@1.62.1:
+  version "1.62.1"
+  resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz"
+  integrity sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==
 
-playwright@1.61.1:
-  version "1.61.1"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.61.1.tgz#d8c0c06eb93c28981afc747bace453bdbd5018bc"
-  integrity sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ==
+playwright@1.62.1:
+  version "1.62.1"
+  resolved "https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz"
+  integrity sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==
   dependencies:
-    playwright-core "1.61.1"
+    playwright-core "1.62.1"
   optionalDependencies:
     fsevents "2.3.2"
 
@@ -5835,7 +5817,7 @@ tsutils@^3.21.0:
 
 tweetnacl@^1.0.3:
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.3.tgz#ac0af71680458d8a6378d0d0d050ab1407d35596"
+  resolved "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.3.tgz"
   integrity sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==
 
 type-check@^0.4.0, type-check@~0.4.0:
@@ -5913,7 +5895,7 @@ use-sync-external-store@^1.2.2, use-sync-external-store@^1.4.0:
 
 utf-8-validate@^6.0.0:
   version "6.0.6"
-  resolved "https://registry.yarnpkg.com/utf-8-validate/-/utf-8-validate-6.0.6.tgz#8a842c9b15af3f6323a3d5ed5eb9e61d208d8c22"
+  resolved "https://registry.npmjs.org/utf-8-validate/-/utf-8-validate-6.0.6.tgz"
   integrity sha512-q3l3P9UtEEiAHcsgsqTgf9PPjctrDWoIXW3NpOHFdRDbLvu4DLIcxHangJ4RLrWkBcKjmcs/6NkerI8T/rE4LA==
   dependencies:
     node-gyp-build "^4.3.0"
